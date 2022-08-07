@@ -25,7 +25,7 @@ jobs:
     #   run: dotnet test --no-build --verbosity normal --configuration release
     # - name: Package
     #   run: dotnet pack --include-symbols --configuration release
-    # - name: Publish
+    - name: Publish
       run: echo $NUGET_API_KEY
     #   run: >
     #     dotnet nuget push ./src/Markdown.Console/bin/Release/Markdown.Console.*.nupkg
