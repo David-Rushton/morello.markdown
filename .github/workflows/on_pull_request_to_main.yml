@@ -22,4 +22,6 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal --configuration debug
     - name: Package
+      # We don't use the package in PRs
+      # This is simply a test that we can package
       run: dotnet pack --include-symbols --configuration debug
