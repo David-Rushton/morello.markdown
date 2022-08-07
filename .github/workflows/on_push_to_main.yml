@@ -24,7 +24,6 @@ jobs:
     # - name: Package
     #   run: dotnet pack --include-symbols --configuration release
     - name: Publish
-    - uses: actions/checkout@v3
       env:
         NUGET_API_KEY: $${ secrets.NUGET_API_KEY }}
       run: echo "$NUGET_API_KEY"
