@@ -26,7 +26,7 @@ jobs:
     # - name: Package
     #   run: dotnet pack --include-symbols --configuration release
     - name: Publish
-      run: echo $NUGET_API_KEY
+      run: echo "$NUGET_API_KEY"
     #   run: >
     #     dotnet nuget push ./src/Markdown.Console/bin/Release/Markdown.Console.*.nupkg
     #     --api-key "$NUGET_API_KEY"
