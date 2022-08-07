@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - env:
+         NUGET_API_KEY: $${ secrets.NUGET_API_KEY }}
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
@@ -20,6 +22,13 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --configuration release
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Package
+      run: dotnet pack --configuration release --include-symbols
+    - name: Publish
+      run: >
+        dotnet nuget push .\src\Markdown.Console\bin\Release\Markdown.Console.0.1.0.nupkg
+        --api-key $NUGET_API_KEY
+        --source https://api.nuget.org/v3/index.json

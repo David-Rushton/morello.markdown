@@ -4,13 +4,28 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.1.0</Version>
+    <PackageId>Markdown.Console</PackageId>
+    <Version>0.2.0</Version>
+    <Authors>David Rushton</Authors>
+    <Company>David Rushton Dev</Company>
+    <Description>
+        Beautiful markdown rendering in your console
+    </Description>
+    <Copyright>David Rushton 2022</Copyright>
+    <RepositoryUrl>https://github.com/David-Rushton/markdown.console</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Markdig" Version="0.28.1" />
     <PackageReference Include="Spectre.Console" Version="0.44.0" />
     <PackageReference Include="Spectre.Console.ImageSharp" Version="0.44.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath=""/>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
