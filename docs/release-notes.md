@@ -23,4 +23,8 @@ We support:
 
 Syntax highlighting is available if you have [Bat](https://github.com/sharkdp/bat) on your path.
 ");
+
 ```
+
+> ⚠️ Warning ⚠️  
+> We used [Nerd Fonts](https://www.nerdfonts.com/) when rendering to the console.  If your font doesn't support the fall range of characters some elements may not render correctly.
