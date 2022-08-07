@@ -1,13 +1,11 @@
 name: .NET
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  build:
+  Build_and_Test:
 
     runs-on: ubuntu-latest
 
@@ -20,6 +18,10 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --configuration debug
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal --configuration debug
+    - name: Package
+      # We don't use the package in PRs
+      # This is simply a test that we can package
+      run: dotnet pack --include-symbols --configuration debug
