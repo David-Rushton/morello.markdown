@@ -31,7 +31,6 @@ public static class MarkdownConsole
 
         var console = AnsiConsole.Create(settings);
 
-        // TODO: TestConsole trims output, which we should do here.
         Write(markdown, console);
     }
 
