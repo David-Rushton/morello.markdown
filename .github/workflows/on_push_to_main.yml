@@ -11,8 +11,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-      with:
-        NUGET_API_KEY: $${ secrets.NUGET_API_KEY }}
     # - name: Setup .NET
     #   uses: actions/setup-dotnet@v2
     #   with:
@@ -26,6 +24,8 @@ jobs:
     # - name: Package
     #   run: dotnet pack --include-symbols --configuration release
     - name: Publish
+      with:
+        NUGET_API_KEY: $${ secrets.NUGET_API_KEY }}
       run: echo "$NUGET_API_KEY"
     #   run: >
     #     dotnet nuget push ./src/Markdown.Console/bin/Release/Markdown.Console.*.nupkg
