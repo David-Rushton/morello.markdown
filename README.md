@@ -14,5 +14,5 @@ This library uses these amazing projects to make markdown look its best in your 
 Bat and Nerd Fonts both need to be installed on your local system.  When they are not available this library
 will still work, but the output will not support the full range of features.
 
-> ⚠️ WARNING || Nerd Fonts fallback is a bit messy ATM.
-> Check out this [issue](https://github.com/David-Rushton/markdown.console/issues/1) ⚠️
+> ⚠️ WARNING ⚠️  
+> Nerd Fonts fallback is a bit [messy at the moment](https://github.com/David-Rushton/markdown.console/issues/1) 
