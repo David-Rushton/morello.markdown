@@ -165,7 +165,7 @@ public class AnsiRenderer
 
         if (block.Level == 1)
         {
-            buffer.Write(new FigletText(rawContent).Alignment(Justify.Center).Color(Color.Purple));
+            buffer.Write(new FigletText(rawContent).Alignment(Justify.Left).Color(Color.Purple));
             return;
         }
 

@@ -5,16 +5,15 @@ namespace Markdown.Console.Tests;
 
 public partial class MarkdownConsoleTests
 {
-    [Fact(Skip = "We need to set TestConole to a fixed width to make this test deterministic.")]
+    [Fact(Skip = "Flakey || Test results depend on underlying console width")]
     public void Given_markdown_with_header_level_1_block_should_return_correct_ansi_escaped_string()
     {
-        var expected =
-            @"                 [38;5;5m  _   _                      _               [0m
-                 [38;5;5m | | | |   ___    __ _    __| |   ___   _ __ [0m
-                 [38;5;5m | |_| |  / _ \  / _` |  / _` |  / _ \ | '__|[0m
-                 [38;5;5m |  _  | |  __/ | (_| | | (_| | |  __/ | |   [0m
-                 [38;5;5m |_| |_|  \___|  \__,_|  \__,_|  \___| |_|   [0m
-                 [38;5;5m                                             [0m
+        var expected = @$"{AnsiEscape}[38;5;5m  _   _                      _               {AnsiEscape}[0m
+{AnsiEscape}[38;5;5m | | | |   ___    __ _    __| |   ___   _ __ {AnsiEscape}[0m
+{AnsiEscape}[38;5;5m | |_| |  / _ \\  / _` |  / _` |  / _ \\ | '__|{AnsiEscape}[0m
+{AnsiEscape}[38;5;5m |  _  | |  __/ | (_| | | (_| | |  __/ | |   {AnsiEscape}[0m
+{AnsiEscape}[38;5;5m |_| |_|  \\___|  \\__,_|  \\__,_|  \\___| |_|   {AnsiEscape}[0m
+{AnsiEscape}[38;5;5m                                             {AnsiEscape}[0m
 ";
         var actual = new TestConsole()
             .Write("# Header")
