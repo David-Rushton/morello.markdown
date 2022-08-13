@@ -1,4 +1,3 @@
-using System;
 using Markdig;
 using Markdig.Syntax;
 using Morello.Markdown.Console;
@@ -14,7 +13,6 @@ public static class MarkdownConsole
     private readonly static MarkdownPipeline _markdownPipeline = new MarkdownPipelineBuilder()
         .UseAdvancedExtensions()
         .Build();
-
 
     /// <summary>
     /// Writes formatted markdown in the console.
