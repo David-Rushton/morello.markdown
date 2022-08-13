@@ -4,14 +4,17 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
     <PackageId>Morello.MarkdownConsole</PackageId>
     <Version>1.0.1</Version>
+    <icon>cherry-64.png</icon>
+    <Company>Morello</Company>
     <Authors>David Rushton</Authors>
-    <Company>David Rushton Dev</Company>
     <Title>Markdown Console</Title>
     <Description>
         Beautiful markdown rendering in your console
     </Description>
+    <PackageTags>Markdown Console Terminal Shell</PackageTags>
     <IsPackable>true</IsPackable>
     <Copyright>David Rushton 2022</Copyright>
     <RepositoryUrl>https://github.com/David-Rushton/Morello.Markdown.Console</RepositoryUrl>
@@ -19,6 +22,9 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <ReleaseNotes>
+        Adds debug symbols
+    </ReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +36,8 @@
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath=""/>
     <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+
+    <None Include="..\..\images\cherry-64.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
