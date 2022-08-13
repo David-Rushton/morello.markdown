@@ -1,5 +1,8 @@
 # Markdown Console
 
+[![MC PR Build and Test](https://github.com/David-Rushton/markdown.console/actions/workflows/on_pull_request_to_main.yml/badge.svg?branch=main)](https://github.com/David-Rushton/markdown.console/actions/workflows/on_pull_request_to_main.yml)
+[![MC Publish to NuGet](https://github.com/David-Rushton/markdown.console/actions/workflows/on_push_to_main.yml/badge.svg?branch=main)](https://github.com/David-Rushton/markdown.console/actions/workflows/on_push_to_main.yml)
+
 A .NET library that pretty prints markdown in the console.
 
 ## Acknowledgments
@@ -14,5 +17,5 @@ This library uses these amazing projects to make markdown look its best in your 
 Bat and Nerd Fonts both need to be installed on your local system.  When they are not available this library
 will still work, but the output will not support the full range of features.
 
-> ⚠️ WARNING ⚠️  
-> Nerd Fonts fallback is a bit [messy at the moment](https://github.com/David-Rushton/markdown.console/issues/1) 
+> ⚠️ WARNING ⚠️
+> Nerd Fonts fallback is a bit [messy at the moment](https://github.com/David-Rushton/markdown.console/issues/1)
