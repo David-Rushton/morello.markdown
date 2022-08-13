@@ -1,9 +1,10 @@
 using System;
 using Markdig;
 using Markdig.Syntax;
+using Morello.Markdown.Console;
 using Spectre.Console;
 
-namespace Morello.Markdown.Console;
+namespace Morello;
 
 /// <summary>
 /// Renders markdown in the terminal.
