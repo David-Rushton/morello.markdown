@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Markdown.Console\Markdown.Console.csproj" />
+    <ProjectReference Include="..\Morello.Markdown.Console\Morello.Markdown.Console.csproj" />
   </ItemGroup>
 
 </Project>

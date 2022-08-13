@@ -1,6 +1,6 @@
 using Spectre.Console;
 
-namespace Markdown.Console.Tests;
+namespace Morello.Markdown.Console.Tests;
 
 public class TestConsole
 {

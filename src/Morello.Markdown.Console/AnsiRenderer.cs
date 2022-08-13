@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
-using Markdown.Console.Formatters;
-using Markdown.Console.SyntaxHighlighters;
+using Morello.Markdown.Console.Formatters;
+using Morello.Markdown.Console.SyntaxHighlighters;
 using Markdig.Extensions.AutoIdentifiers;
 using Markdig.Extensions.TaskLists;
 using Markdig.Syntax;
@@ -8,7 +8,7 @@ using Markdig.Syntax.Inlines;
 using MarkdownTable = Markdig.Extensions.Tables;
 using Spectre.Console;
 
-namespace Markdown.Console;
+namespace Morello.Markdown.Console;
 
 public class AnsiRenderer
 {

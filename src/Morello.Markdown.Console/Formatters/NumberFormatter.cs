@@ -1,4 +1,4 @@
-namespace Markdown.Console.Formatters;
+namespace Morello.Markdown.Console.Formatters;
 
 public class NumberFormatter
 {

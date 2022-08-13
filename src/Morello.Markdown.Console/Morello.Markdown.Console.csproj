@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>Markdown.Console</PackageId>
+    <PackageId>Morello.Markdown.Console</PackageId>
     <Version>0.3.0</Version>
     <Authors>David Rushton</Authors>
     <Company>David Rushton Dev</Company>
@@ -12,7 +12,7 @@
         Beautiful markdown rendering in your console
     </Description>
     <Copyright>David Rushton 2022</Copyright>
-    <RepositoryUrl>https://github.com/David-Rushton/markdown.console</RepositoryUrl>
+    <RepositoryUrl>https://github.com/David-Rushton/Morello.Markdown.Console</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
