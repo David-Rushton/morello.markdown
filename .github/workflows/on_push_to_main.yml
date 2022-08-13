@@ -1,4 +1,4 @@
-name: MarkdownConsole || Publish to NuGet
+name: MC Publish to NuGet
 
 on:
   push:

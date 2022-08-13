@@ -1,4 +1,4 @@
-name: MarkdownConsole || PR Build and Test
+name: MC PR Build and Test
 
 on:
   pull_request:
