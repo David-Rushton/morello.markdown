@@ -1,5 +1,15 @@
 # Release Notes
 
+## `v.0.3.0`
+
+Titles are now rendered left-aligned.  Previously centre-aligned.  Centre alignment didn't look great
+in wide terminals.  The heading looked detected from the content.  Left alignment ensures the heading
+appears above the content.
+
+## `v.0.2.0`
+
+We have added unit tests.
+
 ## `v.0.1.0`
 
 Big Bang!
@@ -26,5 +36,5 @@ Syntax highlighting is available if you have [Bat](https://github.com/sharkdp/ba
 
 ```
 
-> ⚠️ Warning ⚠️  
+> ⚠️ Warning ⚠️
 > We used [Nerd Fonts](https://www.nerdfonts.com/) when rendering to the console.  If your font doesn't support the fall range of characters some elements may not render correctly.
