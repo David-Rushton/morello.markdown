@@ -4,13 +4,15 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>Morello.Markdown.Console</PackageId>
-    <Version>1.0.0</Version>
+    <PackageId>Morello.MarkdownConsole</PackageId>
+    <Version>1.0.1</Version>
     <Authors>David Rushton</Authors>
     <Company>David Rushton Dev</Company>
+    <Title>Markdown Console</Title>
     <Description>
         Beautiful markdown rendering in your console
     </Description>
+    <IsPackable>true</IsPackable>
     <Copyright>David Rushton 2022</Copyright>
     <RepositoryUrl>https://github.com/David-Rushton/Morello.Markdown.Console</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -24,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath=""/>
+    <None Include="README.md" Pack="true" PackagePath=""/>
     <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
   </ItemGroup>
 
