@@ -1,5 +1,17 @@
 # Release Notes
 
+## `v1.0.0`
+
+We have a project name - `Morello`!
+
+I've moved the `MarkdownConsole` into a our top-level namespace.
+
+```cs
+using Morello;
+
+MarkdownConsole.Write("# Markdown");
+```
+
 ## `v.0.3.0`
 
 Titles are now rendered left-aligned.  Previously centre-aligned.  Centre alignment didn't look great
