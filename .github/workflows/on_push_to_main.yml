@@ -1,10 +1,10 @@
-name: .NET
+name: MarkdownConsole || Publish to NuGet
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - src/Markdown.Console/**
+      - src/Morello.Markdown.Console/**
 
 jobs:
   Publish:
