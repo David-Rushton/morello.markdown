@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - src/Morello.Markdown.Console/**
+      - src/Morello.MarkdownConsole/**
 
 jobs:
   Publish:
@@ -29,6 +29,6 @@ jobs:
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       run: echo "$NUGET_API_KEY"
-        dotnet nuget push ./src/Morello.Markdown.Console/bin/Release/Morello.Markdown.Console.*.nupkg
+        dotnet nuget push ./src/Morello.MarkdownConsole/bin/Release/Morello.Markdown.Console.*.nupkg
         --api-key "$NUGET_API_KEY"
         --source https://api.nuget.org/v3/index.json

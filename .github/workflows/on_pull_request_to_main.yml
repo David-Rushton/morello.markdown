@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ "main" ]
     paths:
-      - src/Morello.Markdown.Console/**
+      - src/Morello.MarkdownConsole/**
 
 jobs:
   Build_and_Test:
