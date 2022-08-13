@@ -7,6 +7,10 @@
 
 A .NET library that pretty prints markdown in the console.
 
+## Download
+
+You can download from [NuGet](https://www.nuget.org/packages/Morello.MarkdownConsole).
+
 ## Acknowledgments
 
 This library uses these amazing projects to make markdown look its best in your console:
