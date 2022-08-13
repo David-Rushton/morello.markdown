@@ -3,7 +3,7 @@ using Markdig;
 using Markdig.Syntax;
 using Spectre.Console;
 
-namespace Markdown.Console;
+namespace Morello.Markdown.Console;
 
 /// <summary>
 /// Renders markdown in the terminal.

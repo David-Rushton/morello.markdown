@@ -1,7 +1,7 @@
-using Markdown.Console.Tests.Extensions;
+using Morello.Markdown.Console.Tests.Extensions;
 using Xunit;
 
-namespace Markdown.Console.Tests;
+namespace Morello.Markdown.Console.Tests;
 
 public partial class MarkdownConsoleTests
 {

@@ -1,4 +1,4 @@
-﻿namespace Markdown.Console.Tests.Extensions;
+﻿namespace Morello.Markdown.Console.Tests.Extensions;
 
 public static class StringExtensions
 {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Markdown.Console.SyntaxHighlighters;
+namespace Morello.Markdown.Console.SyntaxHighlighters;
 
 public class SyntaxHighlighter
 {

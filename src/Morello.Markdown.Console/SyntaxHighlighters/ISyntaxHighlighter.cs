@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Markdown.Console.SyntaxHighlighters;
+namespace Morello.Markdown.Console.SyntaxHighlighters;
 
 /// <summary>
 /// Highlights syntax in a given code sample.

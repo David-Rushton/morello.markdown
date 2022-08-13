@@ -1,8 +1,8 @@
-using Markdown.Console.SyntaxHighlighters;
-using Markdown.Console.Tests.Extensions;
+using Morello.Markdown.Console.SyntaxHighlighters;
+using Morello.Markdown.Console.Tests.Extensions;
 using Xunit;
 
-namespace Markdown.Console.Tests;
+namespace Morello.Markdown.Console.Tests;
 
 public class BasicSyntaxHighlighterTests
 {

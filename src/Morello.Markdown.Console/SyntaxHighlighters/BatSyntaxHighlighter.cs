@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Spectre.Console;
 
-namespace Markdown.Console.SyntaxHighlighters;
+namespace Morello.Markdown.Console.SyntaxHighlighters;
 
 /// <summary>
 /// A wrapper around Bat.  A cli tool that provides syntax highlighting.

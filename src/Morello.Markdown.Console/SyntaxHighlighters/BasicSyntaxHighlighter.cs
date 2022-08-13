@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Spectre.Console;
 
-namespace Markdown.Console.SyntaxHighlighters;
+namespace Morello.Markdown.Console.SyntaxHighlighters;
 
 /// <summary>
 /// Provides very basic syntax highlighting.  Recommend as a fallback option, should other
