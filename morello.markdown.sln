@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FA013109-59D7-4D4D-BA92-9102726A863D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Console", "src\Morello.Markdown.Console\Morello.Markdown.Console.csproj", "{2538F8B3-0F7E-4141-ADA5-747342BD76D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Console", "src\Morello.MarkdownConsole\Morello.MarkdownConsole.csproj", "{2538F8B3-0F7E-4141-ADA5-747342BD76D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Console.Tests", "src\Morello.Markdown.Console.Tests\Morello.Markdown.Console.Tests.csproj", "{4A7B9EB3-ACE2-4EAF-89F3-C274CEB1A837}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Console.Tests", "src\Morello.MarkdownConsole.Tests\Morello.MarkdownConsole.Tests.csproj", "{4A7B9EB3-ACE2-4EAF-89F3-C274CEB1A837}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
