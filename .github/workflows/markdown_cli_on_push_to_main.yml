@@ -35,7 +35,6 @@ jobs:
         # Read values from the repo
         version="v$(grep '<Version>[0-9].[0-9].[0-9]<\/Version>' ./Morello.MarkdownCli/Markdown.Cli.csproj | grep '[0-9].[0-9].[0-9]' --only-matching)"
         tag="markdown-cli-$version"
-        release_notes="$(cat ../../docs/markdown-cli/release-notes-$version.md)"
 
         # Config git
         git config user.name "Morello Release Bot"
@@ -46,7 +45,7 @@ jobs:
         git tag -a $tag -m "Release $tag"
 
         # Release
-        gh release create $tag --title $version --notes-file "$release_notes"
+        gh release create $tag --title $version --notes-file ../../docs/markdown-cli/release-notes-$version.md
 
 
 
