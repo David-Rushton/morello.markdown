@@ -39,4 +39,15 @@ jobs:
         --source https://api.nuget.org/v3/index.json
     - name: Tag
       working-directory: ./src/markdown-console/
-      run: ./deploy/tag_build.sh
+      run: |
+        # Read values from the repo
+        version="v$(grep '<Version>[0-9].[0-9].[0-9]<\/Version>' ./Morello.MarkdownConsole/MarkdownConsole.csproj | grep '[0-9].[0-9].[0-9]' --only-matching)"
+        tag="markdown-console-$version"
+
+        # Config git
+        git config user.name "Morello Release Bot"
+        git config user.email "releases@morello.tools"
+
+        # Tag
+        git tag -a markdown-console-latest
+        git tag -a $tag -m "Release $tag"

@@ -26,9 +26,28 @@ jobs:
     - name: Test
       working-directory: ./src/markdown-cli/
       run: dotnet test --no-build --verbosity normal --configuration release
-    - name: Tag
+    - name: Tag and Release
       working-directory: ./src/markdown-cli/
-      run: ./deploy/tag_build.sh
-    - name: Release
-      working-directory: ./src/markdown-cli/
-      run: ./deploy/release_build.sh
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # Read values from the repo
+        version="v$(grep '<Version>[0-9].[0-9].[0-9]<\/Version>' ./Morello.MarkdownCli/Markdown.Cli.csproj | grep '[0-9].[0-9].[0-9]' --only-matching)"
+        tag="markdown-cli-$version"
+        release_notes="$(cat ..\..\docs\markdown-cli\release-notes-$version.md)"
+
+        # Config git
+        git config user.name "Morello Release Bot"
+        git config user.email "releases@morello.tools"
+
+        # Tag
+        git tag -a markdown-cli-latest
+        git tag -a $tag -m "Release $tag"
+
+        # Release
+        gh create release $tag --title $version --notes-file "$release_notes"
+
+
+
+
+
