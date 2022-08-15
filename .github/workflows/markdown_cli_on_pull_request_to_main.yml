@@ -1,0 +1,25 @@
+name: CLI PR Build and Test
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - src/markdown-cli/**
+
+jobs:
+  Build_and_Test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./src/markdown-cli/markdown-cli.sln --runtime linux-x64
+    - name: Build
+      run: dotnet build ./src/markdown-cli/markdown-cli.sln --no-restore --configuration debug --runtime linux-x64
+    - name: Test
+      run: dotnet test --no-build --verbosity normal --configuration debug --runtime linux-x64

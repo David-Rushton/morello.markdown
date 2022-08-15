@@ -9,14 +9,17 @@
 
 Tools for rendering markdown beautifully in your terminal.
 
-## `MarkdownConsole`
-
-A .Net library that uses [Ansi Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code) tp pretty print markdown. 
 ## `MarkdownCli`
 
 A console app that prints markdown in your console.
 
 ![example screen shot](./images/markdown-cli-example.png)
+
+Powered by [MarkdownConsole](##`MarkdownConsole`).
+
+## `MarkdownConsole`
+
+A .Net library that uses [Ansi Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code) tp pretty print markdown.
 
 ## Acknowledgments
 
