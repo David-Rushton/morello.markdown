@@ -46,7 +46,7 @@ jobs:
         git tag -a $tag -m "Release $tag"
 
         # Release
-        gh create release $tag --title $version --notes-file "$release_notes"
+        gh release create $tag --title $version --notes-file "$release_notes"
 
 
 
