@@ -26,4 +26,4 @@ jobs:
     - name: Package
       # We don't use the package in PRs
       # This is simply a test that we can package
-      run: dotnet pack --include-symbols --configuration debug
+      run: dotnet pack ./src/markdown-console/markdown-console.sln --include-symbols --configuration debug
