@@ -21,12 +21,17 @@ jobs:
     - name: Restore dependencies
       working-directory: ./src/markdown-cli/
       run: dotnet restore
-    - name: Build
-      working-directory: ./src/markdown-cli/
-      run: dotnet build --no-restore --configuration release
     - name: Test
       working-directory: ./src/markdown-cli/
       run: dotnet test --no-build --verbosity normal --configuration release
+    - name: Build
+      working-directory: ./src/markdown-cli/
+      run: |
+        # Windows
+        dotnet build .\Morello.MarkdownCli\Markdown.Cli.csproj --configuration release --runtime win-x64
+
+        # Linux
+        dotnet build .\Morello.MarkdownCli\Markdown.Cli.csproj --configuration release --runtime linux-x64
     - name: Tag and Release
       working-directory: ./src/markdown-cli/
       env:
@@ -47,9 +52,4 @@ jobs:
         git push origin $tag
 
         # Release
-        gh release create $tag --title $version --notes-file ../../docs/markdown-cli/release-notes-$version.md
-
-
-
-
-
+        gh release create $tag ./Morello.MarkdownCli/bin/Release/net6.0/win-x64/publish/md-cli.exe ./Morello.MarkdownCli/bin/Release/net6.0/linus-x64/publish/md-cli --title $version --notes-file ../../docs/markdown-cli/release-notes-$version.md
