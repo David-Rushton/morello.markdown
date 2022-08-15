@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>md-cli</AssemblyName>
+    <Nullable>enable</Nullable>
+    <Version>0.1.0</Version>
+    <!--
+        Fixes: error NETSDK1134: Building a solution with a specific RuntimeIdentifier is not supported.
+        This has to be overriden when building for other OSs.
+    -->
+    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <DebugType>embedded</DebugType>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Morello.MarkdownConsole" Version="1.0.1" />
+    <PackageReference Include="Spectre.Console" Version="0.44.0" />
+    <PackageReference Include="Spectre.Console.Analyzer" Version="0.44.0" />
+  </ItemGroup>
+
+</Project>

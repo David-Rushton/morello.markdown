@@ -35,9 +35,9 @@
 
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath=""/>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\..\..\LICENSE" Pack="true" PackagePath=""/>
 
-    <None Include="..\..\images\cherry-64.png" Pack="true" PackagePath=""/>
+    <None Include="..\..\..\images\cherry-64.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>

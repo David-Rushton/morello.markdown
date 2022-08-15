@@ -1,10 +1,10 @@
-name: MC Publish to NuGet
+name: Console Publish to NuGet
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - src/Morello.MarkdownConsole/**
+      - src/markdown-console/**
 
 jobs:
   Publish:
@@ -20,15 +20,15 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore --configuration release
+      run: dotnet build ./src/markdown-console/markdown-console.sln --no-restore --configuration release
     - name: Test
-      run: dotnet test --no-build --verbosity normal --configuration release
+      run: dotnet test ./src/markdown-console/markdown-console.sln --no-build --verbosity normal --configuration release
     - name: Package
-      run: dotnet pack --include-symbols --configuration release
+      run: dotnet pack ./src/markdown-console/markdown-console.sln --include-symbols --configuration release
     - name: Publish
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       run: >
-        dotnet nuget push ./src/Morello.MarkdownConsole/bin/Release/Morello.MarkdownConsole.*.nupkg
+        dotnet nuget push ./src/markdown-console/Morello.MarkdownConsole/bin/Release/Morello.MarkdownConsole.*.nupkg
         --api-key "$NUGET_API_KEY"
         --source https://api.nuget.org/v3/index.json

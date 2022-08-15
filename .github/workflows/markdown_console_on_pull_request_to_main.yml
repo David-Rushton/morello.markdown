@@ -1,0 +1,29 @@
+name: Console PR Build and Test
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - src/markdown-console/**
+
+jobs:
+  Build_and_Test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./src/markdown-console/markdown-console.sln
+    - name: Build
+      run: dotnet build ./src/markdown-console/markdown-console.sln --no-restore --configuration debug
+    - name: Test
+      run: dotnet test ./src/markdown-console/markdown-console.sln --no-build --verbosity normal --configuration debug
+    - name: Package
+      # We don't use the package in PRs
+      # This is simply a test that we can package
+      run: dotnet pack ./src/markdown-console/markdown-console.sln --include-symbols --configuration debug

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morello.MarkdownConsole", "Morello.MarkdownConsole\Morello.MarkdownConsole.csproj", "{37F5FCD3-248E-4510-9CD5-14162C27BB99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morello.MarkdownConsole.Tests", "Morello.MarkdownConsole.Tests\Morello.MarkdownConsole.Tests.csproj", "{4FEE7883-DA48-41FE-BBFF-438CF4A2232B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37F5FCD3-248E-4510-9CD5-14162C27BB99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37F5FCD3-248E-4510-9CD5-14162C27BB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37F5FCD3-248E-4510-9CD5-14162C27BB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37F5FCD3-248E-4510-9CD5-14162C27BB99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FEE7883-DA48-41FE-BBFF-438CF4A2232B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FEE7883-DA48-41FE-BBFF-438CF4A2232B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FEE7883-DA48-41FE-BBFF-438CF4A2232B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FEE7883-DA48-41FE-BBFF-438CF4A2232B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
