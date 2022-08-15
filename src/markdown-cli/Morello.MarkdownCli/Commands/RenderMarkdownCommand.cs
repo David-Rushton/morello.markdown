@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using Morello;
 using Morello.MarkdownCli;
 using Spectre.Console;
@@ -17,8 +17,8 @@ public class RenderMarkdownCommand : Command<RenderMarkdownCommand.Settings>
 {
     public class Settings : CommandSettings
     {
-        [Description("You can pass markdown or a path to a markdown file")]
-        [CommandArgument(position: 0, "[markdown|file]")]
+        [Description("Markdown or path to markdown file")]
+        [CommandArgument(position: 0, "[markdown|path]")]
         public string[] MarkdownSources { get; set; } = Array.Empty<string>();
 
         [Description("Enables verbose error messages and validates usage examples")]
@@ -34,11 +34,9 @@ public class RenderMarkdownCommand : Command<RenderMarkdownCommand.Settings>
             {
                 var content = File.ReadAllText(source);
                 MarkdownConsole.Write(content);
-                continue;
             }
             else
             {
-
                 // Markdown text.
                 MarkdownConsole.Write(source);
             }
@@ -57,6 +55,11 @@ public class RenderMarkdownCommand : Command<RenderMarkdownCommand.Settings>
             settings.MarkdownSources = new[] { pipeInput }
                 .Concat(settings.MarkdownSources)
                 .ToArray();
+        }
+
+        if (settings.MarkdownSources.Length == 0)
+        {
+            return ValidationResult.Error("Markdown is required");
         }
 
         return base.Validate(context, settings);

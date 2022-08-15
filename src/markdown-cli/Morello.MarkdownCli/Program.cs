@@ -1,18 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using Morello.MarkdownCli;
 using Morello.MarkdownCli.Commands;
 using Spectre.Console.Cli;
 
-BootstrapApp().Run(args);
+string[] defaultArg = new[] { "--help" };
 
+BootstrapApp().Run(GetArgsOrDefault());
 
 CommandApp<RenderMarkdownCommand> BootstrapApp()
 {
     var app = new CommandApp<RenderMarkdownCommand>();
     app.Configure(config =>
     {
-
-        config.SetApplicationName("markdown cli");
+        config
+            .SetApplicationName("md-cli")
+            .SetApplicationVersion(GetVersion());
 
         if (IsDebugModeEnabled())
         {
@@ -23,11 +28,30 @@ CommandApp<RenderMarkdownCommand> BootstrapApp()
 
         config
             .CaseSensitivity(CaseSensitivity.None)
-            .AddExample(new[] { "'Some **markdown** text" });
+            .UseStrictParsing();
+
+        config.AddExample(new[] { "'Some **markdown** text'" });
+        config.AddExample(new[] { "/path/to/markdown/file.md" });
+        config.AddExample(new[] { "/path/to/markdown/file.md", "'Some **markdown** text'" });
     });
 
     return app;
 }
+
+IEnumerable<string> GetArgsOrDefault()
+{
+    if (PipelineReader.TryReadAll(out var pipeInput))
+    {
+        return args.Concat(new[] { pipeInput });
+    }
+
+    return args.Length == 0
+        ? defaultArg
+        : args;
+}
+
+string GetVersion() =>
+    Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "v0.0.0";
 
 bool IsDebugModeEnabled()
 {
