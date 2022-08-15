@@ -51,3 +51,5 @@ jobs:
         # Tag
         git tag -a markdown-console-latest
         git tag -a $tag -m "Release $tag"
+        git push origin markdown-console-latest
+        git push origin $tag
