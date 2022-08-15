@@ -1,5 +1,15 @@
 # Release Notes
 
+## `v1.0.2`
+
+Improved README.
+
+I want to warn users that this library is very new, and still in pre-release.
+
+## `v1.0.1`
+
+Small bug fixes.
+
 ## `v1.0.0`
 
 We have a project name - `Morello`!

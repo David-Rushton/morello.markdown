@@ -1,15 +1,23 @@
-# Markdown Console
+# ![cherry icon](../../images/cherry-64.png) Markdown Console
 
-![Console Build and Test](https://github.com/David-Rushton/markdown.console/actions/workflows/markdown_console_on_pull_request_to_main.yml/badge.svg?branch=main)
-![Console Publish to NuGet](https://github.com/David-Rushton/markdown.console/actions/workflows/markdown_console_on_push_to_main.yml/badge.svg?branch=main)
+[![Console PR Build and Test](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_console_on_pull_request_to_main.yml/badge.svg)](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_console_on_pull_request_to_main.yml)
+[![Console Publish to NuGet](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_console_on_push_to_main.yml/badge.svg)](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_console_on_push_to_main.yml)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/Morello.MarkdownConsole?label=NuGet%20downloads)
 ![License](https://img.shields.io/github/license/david-rushton/morello.markdown)
 
 A .NET library that pretty prints markdown in the console.
 
+> 🐲 This is an early release 🐲  
+> There be dragons  
+> Report them [here](https://github.com/David-Rushton/morello.markdown/issues/new/choose)
+
 ## Download
 
-You can download from [NuGet](https://www.nuget.org/packages/Morello.MarkdownConsole).
+Download from [NuGet](https://www.nuget.org/packages/Morello.MarkdownConsole).
+
+```shell
+dotnet add package Morello.MarkdownConsole --version 1.0.1
+```
 
 ## Acknowledgments
 
