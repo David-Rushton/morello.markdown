@@ -18,17 +18,25 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
+      working-directory: ./src/markdown-console/
       run: dotnet restore
     - name: Build
-      run: dotnet build ./src/markdown-console/markdown-console.sln --no-restore --configuration release
+      working-directory: ./src/markdown-console/
+      run: dotnet build --no-restore --configuration release
     - name: Test
-      run: dotnet test ./src/markdown-console/markdown-console.sln --no-build --verbosity normal --configuration release
+      working-directory: ./src/markdown-console/
+      run: dotnet test --no-build --verbosity normal --configuration release
     - name: Package
-      run: dotnet pack ./src/markdown-console/markdown-console.sln --include-symbols --configuration release
+      working-directory: ./src/markdown-console/
+      run: dotnet pack --include-symbols --configuration release
     - name: Publish
+      working-directory: ./src/markdown-console/
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       run: >
-        dotnet nuget push ./src/markdown-console/Morello.MarkdownConsole/bin/Release/Morello.MarkdownConsole.*.nupkg
+        dotnet nuget push ./Morello.MarkdownConsole/bin/Release/Morello.MarkdownConsole.*.nupkg
         --api-key "$NUGET_API_KEY"
         --source https://api.nuget.org/v3/index.json
+    - name: Tag
+      working-directory: ./src/markdown-console/
+      run: ./deploy/tag_build.sh

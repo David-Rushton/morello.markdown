@@ -18,12 +18,16 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore ./src/markdown-console/markdown-console.sln
+      working-directory: ./src/markdown-console/
+      run: dotnet restore
     - name: Build
-      run: dotnet build ./src/markdown-console/markdown-console.sln --no-restore --configuration debug
+      working-directory: ./src/markdown-console/
+      run: dotnet build --no-restore --configuration debug
     - name: Test
-      run: dotnet test ./src/markdown-console/markdown-console.sln --no-build --verbosity normal --configuration debug
+      working-directory: ./src/markdown-console/
+      run: dotnet test --no-build --verbosity normal --configuration debug
+      # Test we haven't broken our ability to package
+      # Better to break before we merge into main
     - name: Package
-      # We don't use the package in PRs
-      # This is simply a test that we can package
-      run: dotnet pack ./src/markdown-console/markdown-console.sln --include-symbols --configuration debug
+      working-directory: ./src/markdown-console/
+      run: dotnet pack --include-symbols --configuration debug

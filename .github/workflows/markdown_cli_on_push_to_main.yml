@@ -1,13 +1,13 @@
-name: CLI PR Build and Test
+name: Console Publish to NuGet
 
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
     paths:
       - src/markdown-cli/**
 
 jobs:
-  Build_and_Test:
+  Publish:
 
     runs-on: ubuntu-latest
 
@@ -22,7 +22,13 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: ./src/markdown-cli/
-      run: dotnet build --no-restore --configuration debug
+      run: dotnet build --no-restore --configuration release
     - name: Test
       working-directory: ./src/markdown-cli/
-      run: dotnet test --no-build --verbosity normal --configuration debug
+      run: dotnet test --no-build --verbosity normal --configuration release
+    - name: Tag
+      working-directory: ./src/markdown-cli/
+      run: ./deploy/tag_build.sh
+    - name: Release
+      working-directory: ./src/markdown-cli/
+      run: ./deploy/release_build.sh
