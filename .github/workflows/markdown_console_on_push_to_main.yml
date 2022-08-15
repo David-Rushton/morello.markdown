@@ -20,11 +20,11 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build .\src\markdown-console\markdown-console.sln --no-restore --configuration release
+      run: dotnet build ./src/markdown-console/markdown-console.sln --no-restore --configuration release
     - name: Test
-      run: dotnet test .\src\markdown-console\markdown-console.sln --no-build --verbosity normal --configuration release
+      run: dotnet test ./src/markdown-console/markdown-console.sln --no-build --verbosity normal --configuration release
     - name: Package
-      run: dotnet pack .\src\markdown-console\markdown-console.sln --include-symbols --configuration release
+      run: dotnet pack ./src/markdown-console/markdown-console.sln --include-symbols --configuration release
     - name: Publish
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
