@@ -1,10 +1,10 @@
 # ![cherry icon](./images/cherry-64.png) Morello Markdown
 
-![Console Build and Test](https://github.com/David-Rushton/markdown.console/actions/workflows/markdown_console_on_pull_request_to_main.yml/badge.svg?branch=main)
-![Console Publish to NuGet](https://github.com/David-Rushton/markdown.console/actions/workflows/markdown_console_on_push_to_main.yml/badge.svg?branch=main)
+[![Console PR Build and Test](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_console_on_pull_request_to_main.yml/badge.svg)](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_console_on_pull_request_to_main.yml)
+[![Console Publish to NuGet](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_console_on_push_to_main.yml/badge.svg)](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_console_on_push_to_main.yml)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/Morello.MarkdownConsole?label=NuGet%20downloads)
-![Cli Build and Test](https://github.com/David-Rushton/markdown.console/actions/workflows/markdown_cli_on_pull_request_to_main.yml/badge.svg?branch=main)
-![Cli Publish to NuGet](https://github.com/David-Rushton/markdown.console/actions/workflows/markdown_cli_on_push_to_main.yml/badge.svg?branch=main)
+[![CLI PR Build and Test](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_cli_on_pull_request_to_main.yml/badge.svg)](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_cli_on_pull_request_to_main.yml)
+[![CLI Publish to Releases](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_cli_on_push_to_main.yml/badge.svg)](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_cli_on_push_to_main.yml)  
 ![License](https://img.shields.io/github/license/david-rushton/morello.markdown)
 
 ---
