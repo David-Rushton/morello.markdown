@@ -1,4 +1,4 @@
-name: CLI Publish to Release
+name: CLI Publish to Releases
 
 on:
   push:
