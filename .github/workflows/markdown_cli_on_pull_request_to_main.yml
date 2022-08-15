@@ -22,4 +22,4 @@ jobs:
     - name: Build
       run: dotnet build ./src/markdown-cli/markdown-cli.sln --no-restore --configuration debug
     - name: Test
-      run: dotnet test --no-build --verbosity normal --configuration debug
+      run: dotnet test ./src/markdown-cli/markdown-cli.sln --no-build --verbosity normal --configuration debug
