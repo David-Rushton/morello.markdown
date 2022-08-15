@@ -15,3 +15,8 @@ A console app that prints markdown in your console.
 ![example screen shot](./images/markdown-cli-example.png)
 
 Powered by [MarkdownConsole](../markdown-console/README.md).
+
+## No Colour
+
+We support [NO_COLOR](http://no-color.org/).  You can escape formatting, which is useful if your terminal
+doesn't support formatted output, or you just want plain text.

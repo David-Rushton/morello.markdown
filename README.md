@@ -17,11 +17,19 @@ A console app that prints markdown in your console.
 
 ![example screen shot](./images/markdown-cli-example.png)
 
+### Install
+
+Download the [latest binaries](https://github.com/David-Rushton/morello.markdown/releases).
+
 Powered by [MarkdownConsole](##`MarkdownConsole`).
 
 ## `MarkdownConsole`
 
 A .Net library that uses [Ansi Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code) tp pretty print markdown.
+
+```shell
+dotnet add package Morello.MarkdownConsole --version 1.0.1
+```
 
 ## Acknowledgments
 

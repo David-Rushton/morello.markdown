@@ -5,12 +5,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>md-cli</AssemblyName>
     <Nullable>enable</Nullable>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <!--
         Fixes: error NETSDK1134: Building a solution with a specific RuntimeIdentifier is not supported.
         This has to be overriden when building for other OSs.
     -->
-    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
     <DebugType>embedded</DebugType>
