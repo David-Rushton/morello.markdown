@@ -28,10 +28,10 @@ jobs:
       working-directory: ./src/markdown-cli/
       run: |
         # Windows
-        dotnet build .\Morello.MarkdownCli\Markdown.Cli.csproj --configuration release --runtime win-x64
+        dotnet build ./Morello.MarkdownCli/Markdown.Cli.csproj --configuration release --runtime win-x64
 
         # Linux
-        dotnet build .\Morello.MarkdownCli\Markdown.Cli.csproj --configuration release --runtime linux-x64
+        dotnet build ./Morello.MarkdownCli/Markdown.Cli.csproj --configuration release --runtime linux-x64
     - name: Tag and Release
       working-directory: ./src/markdown-cli/
       env:
