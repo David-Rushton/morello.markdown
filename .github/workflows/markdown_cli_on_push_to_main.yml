@@ -1,4 +1,4 @@
-name: CLI Publish to NuGet
+name: CLI Publish to Release
 
 on:
   push:
