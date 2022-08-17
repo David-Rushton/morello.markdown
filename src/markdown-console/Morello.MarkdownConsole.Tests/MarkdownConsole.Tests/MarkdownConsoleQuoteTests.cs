@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Morello.Markdown.Console.Tests;
 
-public partial class MarkdownConsoleTests
+public partial class MarkdownConsoleQuoteTests : MarkdownConsoleTests
 {
     [Fact]
     public void Given_markdown_with_block_quote_should_return_correct_ansi_escaped_string()

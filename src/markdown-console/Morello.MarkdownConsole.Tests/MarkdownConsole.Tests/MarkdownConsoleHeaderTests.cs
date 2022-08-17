@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Morello.Markdown.Console.Tests;
 
-public partial class MarkdownConsoleTests
+public partial class MarkdownConsoleHeaderTests : MarkdownConsoleTests
 {
     [Fact(Skip = "Flakey || Test results depend on underlying console width")]
     public void Given_markdown_with_header_level_1_block_should_return_correct_ansi_escaped_string()

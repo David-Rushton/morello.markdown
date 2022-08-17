@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Morello.Markdown.Console.Tests;
 
-public partial class MarkdownConsoleTests
+public partial class MarkdownConsoleInlineTests : MarkdownConsoleTests
 {
     [Theory]
     [InlineData("**bold**",             $"{AnsiBoldEscape}bold{AnsiResetEscape}\n\n")]
@@ -74,21 +74,6 @@ public partial class MarkdownConsoleTests
             .NormaliseNewLines();
 
         Assert.Equal(expected, actual);
-    }
-
-    [Theory(Skip = "Regex to match link incomplete")]
-    [InlineData("[example](http://example.com) with link",    @"]8;id=[0-9]*;http://example.com[38;5;5mexample\[0m]8;;\ with link")]
-    public void Given_markdown_with_inline_link_should_return_correct_ansi_escaped_string(
-        string markdown,
-        string expected
-    )
-    {
-        var actual = new TestConsole()
-            .Write(markdown)
-            .Output;
-
-        // Assert.Equal(expected, actual);
-        Assert.Matches(expected, actual);
     }
 
     [Theory]

@@ -1,5 +1,32 @@
 # Release Notes
 
+## `v1.1.0`
+
+This is a big update!
+
+### New || Thematic Breaks
+
+We've added support for thematic breaks.  Which is a line used to break up sections within your
+documents.  There are several ways to request a break, including:  
+
+```markdown
+Some text above a break
+
+***
+
+Some text below a break.
+
+You can use use hyphens or undersocres like so:
+
+---
+___
+
+```
+
+This fixes [issue #27](https://github.com/David-Rushton/morello.markdown/issues/27).
+
+See the [CommonMark spec](https://spec.commonmark.org/0.30/#thematic-breaks) for more.
+
 ## `v1.0.2`
 
 Improved README.

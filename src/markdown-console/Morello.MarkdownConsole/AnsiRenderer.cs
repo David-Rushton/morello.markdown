@@ -15,9 +15,6 @@ public class AnsiRenderer
     private readonly SyntaxHighlighter _syntaxHighlighter;
     private readonly NumberFormatter _numberFormatter;
 
-    [DllImport("kernel32.dll")]
-    static extern IntPtr GetConsoleWindow();
-
     public AnsiRenderer()
     {
         _syntaxHighlighter = new SyntaxHighlighter();
@@ -31,9 +28,9 @@ public class AnsiRenderer
 
     private void WriteBlocks(IEnumerable<Block> blocks, IAnsiConsole buffer)
     {
-        foreach (var element in blocks)
+        foreach (var block in blocks)
         {
-            switch (element)
+            switch (block)
             {
                 case HeadingBlock headingBlock:
                     ConvertHeadingBlock(headingBlock, buffer);
@@ -63,11 +60,31 @@ public class AnsiRenderer
                     ConvertLinkReferenceDefinitionBlock(linkBlock, buffer);
                     break;
 
+                case ThematicBreakBlock thematicBreakBlock:
+                    ConvertThematicBreakBlock(thematicBreakBlock, buffer);
+                    break;
+
                 default:
+
+                    // We shouldn't be able to get here.
+                    // The case above should handle all possibilities.
+
+
+                    // if (block is LeafBlock leafBlock)
+                    // {
+                    //     var lines = string.Join("\n", leafBlock.Lines.Lines);
+                    // }
+
+                    // if (block is ContainerBlock containerBlock)
+                    // {
+                    //     containerBlock.
+                    // }
+
+
                     // TODO: Replace message below either:
                     // 1) Plain text rendering (fallback option)
                     // 2) An exception (failure expected only during development option)
-                    buffer.MarkupLine($"[yellow]Block type not supported: {element.GetType()}[/]");
+                    buffer.MarkupLine($"[yellow]Block type not supported: {block.GetType()}[/]");
                     break;
                     // throw new NotSupportedException($"Markdown document type not supported: {element.GetType}")
             };
@@ -298,14 +315,7 @@ public class AnsiRenderer
 
         // TODO: Support fallback highlighter, which returns markup
         buffer.WriteLine(highlightedCode);
-
-        if (GetConsoleWindow() != IntPtr.Zero)
-        {
-            // Throws if no console is attached.
-            // This can happen if the code is executed by some unit test runners.
-            // Rider for example.
-            buffer.Profile.Width = System.Console.BufferWidth;
-        }
+        buffer.Profile.Width = GetConsoleWidth();
     }
 
     private void ConvertLinkReferenceDefinitionBlock(LinkReferenceDefinitionGroup linkBlock, IAnsiConsole buffer)
@@ -313,6 +323,37 @@ public class AnsiRenderer
         foreach (var item in linkBlock)
         {
             buffer.WriteLine(string.Join("\n", ((HeadingLinkReferenceDefinition)item)?.Lines));
+        }
+    }
+
+    private void ConvertThematicBreakBlock(ThematicBreakBlock thematicBreakBlock, IAnsiConsole buffer)
+    {
+        const char lineCharacter = '═';
+        var charactersRequired = GetConsoleWidth() - 2;
+        var line = new string(lineCharacter, charactersRequired);
+
+
+        buffer.MarkupLine($"[purple] {line}[/]");
+    }
+
+    private int GetConsoleWidth()
+    {
+        // Throws if no console is attached.
+        // This can happen if the code is executed by some unit test runners.
+        // Rider and VS Code for example.
+        try
+        {
+            // This line will throw is there is no console attached.
+            // This can happen when the code is executed by a test runner, like Rider and VS Code's
+            // integrated test windows.
+            return System.Console.BufferWidth;
+        }
+        catch
+        {
+            // There is no console.
+            // Return some fixed value.
+            // 80 picked for no other reason than it was the Windows default for a very long time.
+            return 80;
         }
     }
 
