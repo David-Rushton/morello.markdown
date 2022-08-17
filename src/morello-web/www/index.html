@@ -9,10 +9,78 @@
 
         <title>Morello Markdown</title>
         <link rel="icon" type="image/x-icon" href="./media/cherry-32.png">
+        <link rel="stylesheet" href="./style.css">
+
+        <link rel="stylesheet" href="./logic/highlight/styles/github-dark-dimmed.min.css">
+        <script src="./logic/highlight/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
     </head>
     <body>
-        <p>
-            🔨 Coming Soon 🏗️
-        </p>
+
+        <div id="header">
+            <div>
+                <img id="morello_icon" src="./media/cherry-96.png" alt="cherry icon">
+            </div>
+            <div>
+                <h1>Morello Tools</h1>
+                <h2>Beautifully formatted markdown in your terminal</h2>
+            </div>
+            <div>
+
+            </div>
+            <div>
+                <a href="https://www.nuget.org/packages/Morello.MarkdownConsole">
+                    <img id="nuget_icon" src="./media/nuget_icon.svg" alt="NuGet icon">
+                </a>
+            </div>
+            <div>
+                <a href="https://github.com/David-Rushton/morello.markdown">
+                    <img src="./media/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png" alt="GitHub icon">
+                </a>
+            </div>
+        </div>
+
+        <div id="blurb">
+            <div>
+                <h3>Markdown.Cli</h3>
+                <p>
+                    <code>md-cli</code> is a command line client that converts markdown to formatted text.
+                </p>
+                <p>
+                    Pipe or pass file paths and/or markdown.
+                </p>
+                <p>
+                    Call <code>md-cli --help</code> for full instructions.
+                </p>
+                <p>
+                    <img src="media/gifs/markdown-cli-example.gif" alt="animated gif demonstrating application">
+                </p>
+                <a href="https://github.com/David-Rushton/morello.markdown/releases">
+                    <button>Download</button>
+                </a>
+            </div>
+
+            <div>
+                <h3>Markdown.Console</h3>
+                <p>
+                    <code>Markdown.Console</code> is a .Net library that powers <code>md-cli</code>.
+                </p>
+                <pre>
+                    <code class="language-csharp">
+    using Morello;
+
+    // Pretty print markdown in your application
+    MarkdownConsole.WriteLine("Markdown printed in _your_ terminal");
+                    </code>
+                </pre>
+                <a href="https://www.nuget.org/packages/Morello.MarkdownConsole">
+                    <button>Download</button>
+                </a>
+            </div>
+        </div>
+
     </body>
 </html>
+
+
+

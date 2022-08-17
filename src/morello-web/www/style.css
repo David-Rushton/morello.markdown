@@ -1,0 +1,82 @@
+@font-face {
+    font-family: Roboto;
+    src: url(./media/fonts/Roboto/Roboto-Medium.ttf);
+}
+
+@font-face {
+    font-family: SourceCodePro;
+    src: url(./media/fonts/Source_Code_Pro/static/SourceCodePro-Medium.ttf);
+}
+
+:root {
+    --colour-snow: #F5FEFD;
+    --colour-mustard: #F1B814;
+    --colour-charcoal: #343a40;
+    --colour-danube: #6688CC;
+    --colour-old-rose: #BD1E51;
+    --colour-violet-red: #7D3780;
+}
+
+body {
+    color: var(--colour-snow);
+    background-color: var(--colour-charcoal);
+    font-family: Roboto;
+}
+
+h1 {
+    color: var(--colour-mustard);
+}
+
+h2 {
+    color: var(--colour-old-rose);
+}
+
+h3 {
+    padding-top: 20px;
+    font-size: 24px;
+    color: var(--colour-danube);
+}
+
+code {
+    font-family: SourceCodePro;
+    color: var(--colour-mustard);
+}
+
+button {
+    font-family: Roboto;
+    color: var(--colour-charcoal);
+    background-color: var(--colour-mustard);
+    font-size: 30px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: var(--colour-old-rose);
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+}
+
+#header > div {
+    margin: 10px;
+    padding: 10px;
+}
+
+#morello_icon {
+    padding: 12px;
+    margin: 12px;
+}
+
+#nuget_icon {
+    filter: invert(91%) sepia(27%) saturate(229%) hue-rotate(74deg) brightness(112%) contrast(108%);
+    height: 32px;
+    width: 32px;
+}
+
+#blurb {
+    color: var(--colour-snow);
+    padding: 0% 10% 0% 10%
+}
