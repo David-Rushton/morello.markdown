@@ -10,7 +10,7 @@ public partial class MarkdownConsoleThematicBreakTests : MarkdownConsoleTests
     {
         // Test console has a width of 80.
         // We draw lines as full width with a leading and omitted final char.
-        var line = new string('═', 78);
+        var line = new string('═', GetConsoleWidth() - 2);
         var actual = new TestConsole()
             .Write("***")
             .Output
@@ -19,5 +19,19 @@ public partial class MarkdownConsoleThematicBreakTests : MarkdownConsoleTests
         var expected = $"{AnsiPurpleEscape} {line}{AnsiResetEscape}\n\n";
 
         Assert.Equal(expected, actual);
+    }
+
+
+    private int GetConsoleWidth()
+    {
+        try
+        {
+            // Can throw when executed by some test runners.
+            return System.Console.BufferWidth;
+        }
+        catch
+        {
+            return 80;
+        }
     }
 }

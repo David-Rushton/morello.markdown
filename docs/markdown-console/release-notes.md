@@ -4,29 +4,36 @@
 
 This is a big update!
 
-### New || Thematic Breaks
+We've added support for:
 
-We've added support for thematic breaks.  Which is a line used to break up sections within your
-documents.  There are several ways to request a break, including:  
+- Thematic breaks  
+  `***`, `---` or `___` adds a horizontal line.
 
-```markdown
-Some text above a break
+- Image Links  
+  Format: `![fallback text](file_path_or_url_to_image).  
+  See below for more details.  
 
-***
+- Embedded inlines  
+  You can now embed inline styles within each other.  
+  Example: `**bold text with _bold and italic_ section**`.  
 
-Some text below a break.
+- 🐛 Fixed a bug that lead to incorrect multiline quotes  
+  Quotes are prefixed with a space and a horizontal chevron.  
+  Multiline quotes omitted the space on the 2nd and subsequent lines.  
 
-You can use use hyphens or undersocres like so:
+### Image Links
 
----
-___
+Powered by the amazing [ImageSharp](https://github.com/SixLabors/ImageSharp); we support the
+following:
 
-```
-
-This fixes [issue #27](https://github.com/David-Rushton/morello.markdown/issues/27).
-
-See the [CommonMark spec](https://spec.commonmark.org/0.30/#thematic-breaks) for more.
-
+- TIFF
+- BMP
+- PNG
+- JPEG
+- GIF
+- PBM
+- TGA
+- Webp
 ## `v1.0.2`
 
 Improved README.

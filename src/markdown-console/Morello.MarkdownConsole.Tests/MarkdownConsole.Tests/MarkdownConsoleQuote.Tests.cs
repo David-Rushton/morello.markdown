@@ -66,7 +66,7 @@ public partial class MarkdownConsoleQuoteTests : MarkdownConsoleTests
 > two lines";
 
         var expected = @$"{AnsiEscape}[38;5;5m ❯ {AnsiResetEscape}Some quote over
-{AnsiEscape}[38;5;5m❯ {AnsiResetEscape}two lines
+{AnsiEscape}[38;5;5m ❯ {AnsiResetEscape}two lines
 
 ";
         var actual = new TestConsole()

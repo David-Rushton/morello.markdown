@@ -24,17 +24,36 @@ public partial class MarkdownConsoleHeaderTests : MarkdownConsoleTests
     }
 
     [Theory]
-    [InlineData("## Header",     $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n\n")]
-    [InlineData("### Header",    $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n\n")]
-    [InlineData("#### Header",   $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n\n")]
-    [InlineData("##### Header",  $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n\n")]
-    [InlineData("###### Header", $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n\n")]
+    [InlineData("## Header",     $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n")]
+    [InlineData("### Header",    $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n")]
+    [InlineData("#### Header",   $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n")]
+    [InlineData("##### Header",  $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n")]
+    [InlineData("###### Header", $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n")]
     public void Given_markdown_with_header_levels_2_to_6_block_should_return_correct_ansi_escaped_string(
         string input,
         string expected)
     {
         var actual = new TestConsole()
             .Write(input)
+            .Output
+            .NormaliseNewLines();
+
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData("## Header", $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n")]
+    [InlineData("### Header", $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n")]
+    [InlineData("#### Header", $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n")]
+    [InlineData("##### Header", $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n")]
+    [InlineData("###### Header", $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n")]
+    public void Given_markdown_with_block_header_level_2_to_6_should_return_correct_ansi_escaped_string(
+        string markdown,
+        string expected
+    )
+    {
+        var actual = new TestConsole()
+            .Write(markdown)
             .Output
             .NormaliseNewLines();
 

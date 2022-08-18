@@ -1,16 +1,15 @@
-using System.Runtime.InteropServices;
-using Morello.Markdown.Console.Formatters;
-using Morello.Markdown.Console.SyntaxHighlighters;
 using Markdig.Extensions.AutoIdentifiers;
 using Markdig.Extensions.TaskLists;
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
-using MarkdownTable = Markdig.Extensions.Tables;
+using Morello.Markdown.Console.Formatters;
+using Morello.Markdown.Console.SyntaxHighlighters;
 using Spectre.Console;
+using MarkdownTable = Markdig.Extensions.Tables;
 
 namespace Morello.Markdown.Console;
 
-public class AnsiRenderer
+public partial class AnsiRenderer
 {
     private readonly SyntaxHighlighter _syntaxHighlighter;
     private readonly NumberFormatter _numberFormatter;
@@ -33,7 +32,7 @@ public class AnsiRenderer
             switch (block)
             {
                 case HeadingBlock headingBlock:
-                    ConvertHeadingBlock(headingBlock, buffer);
+                    WriteHeadingBlock(buffer, headingBlock);
                     break;
 
                 case ParagraphBlock paragraphBlock:
@@ -49,7 +48,7 @@ public class AnsiRenderer
                     break;
 
                 case MarkdownTable.Table tableBlock:
-                    ConvertTableBlock(tableBlock, buffer);
+                    WriteTableBlock(buffer, tableBlock);
                     break;
 
                 case FencedCodeBlock fencedCodeBlock:
@@ -57,7 +56,7 @@ public class AnsiRenderer
                     break;
 
                 case LinkReferenceDefinitionGroup linkBlock:
-                    ConvertLinkReferenceDefinitionBlock(linkBlock, buffer);
+                    WriteLinkReferenceDefinitionBlock(buffer, linkBlock);
                     break;
 
                 case ThematicBreakBlock thematicBreakBlock:
@@ -93,110 +92,16 @@ public class AnsiRenderer
         }
     }
 
-    private void WriteInlines(IEnumerable<Inline> inlines, IAnsiConsole buffer, string? markupTag = null)
-    {
-        foreach (var inline in inlines)
-        {
-            switch (inline)
-            {
-                case LiteralInline literal:
-
-                    var content = literal.ToString().EscapeMarkup();
-                    if (markupTag is not null)
-                    {
-                        content = $"[{markupTag}]{ content }[/]";
-                    }
-                    buffer.Markup(content);
-                    break;
-
-                case EmphasisInline emphasis:
-                    switch (emphasis.DelimiterChar)
-                    {
-                        case '*':
-                            WriteInlines(emphasis, buffer, "bold");
-                            break;
-
-                        case '_':
-                            WriteInlines(emphasis, buffer, "italic");
-                            break;
-
-                        case '~':
-                            WriteInlines(emphasis, buffer, "strikethrough");
-                            break;
-
-                        default:
-                            // TODO: Consider if exception or plain text.
-                            buffer.MarkupLine($"[yellow]Emphasis type not supported: { emphasis.DelimiterChar }[/]");
-                            break;
-                    }
-                    break;
-
-                case CodeInline code:
-                    buffer.Markup($"[purple][invert]{ code.Content.EscapeMarkup() }[/][/]");
-                    break;
-
-                case LinkInline link:
-                    ConvertLinkInline(link, buffer);
-                    break;
-
-                case LineBreakInline:
-                    // Can only occur within a QuoteBlock.
-                    buffer.Markup("\n[purple]❯ [/]");
-                    break;
-
-                case TaskList task:
-                    buffer.Markup(task.Checked ? "[purple] [/]" : "[purple] [/]");
-                    break;
-
-                default:
-                    // TODO: Plain text or exception.
-                    buffer.MarkupLine($"[yellow]Could not process type: {inline.GetType()}[/]");
-                    break;
-            }
-        }
-    }
-
-    private void ConvertLinkInline(LinkInline link, IAnsiConsole buffer)
-    {
-        var label = link.FirstChild?.ToString() ?? string.Empty;
-
-        if (link.Url is null)
-        {
-            buffer.Markup(link.IsImage ? $"[purple italic]{ label } [/]" : label );
-            return;
-        }
-
-        if (link.IsImage)
-        {
-            var image = new CanvasImage(link.Url);
-            buffer.Write(image);
-            return;
-        }
-
-        buffer.Markup($"[purple link={ link.Url }]{ label }[/]");
-    }
-
-    private void ConvertHeadingBlock(HeadingBlock block, IAnsiConsole buffer)
-    {
-        var rawContent = block.Inline?.FirstChild?.ToString() ?? throw new CannotConvertMarkdownException("Cannot read content of HeadingBlock");
-
-        if (block.Level == 1)
-        {
-            buffer.Write(new FigletText(rawContent).Alignment(Justify.Left).Color(Color.Purple));
-            return;
-        }
-
-        buffer.MarkupLine($"[bold purple]{rawContent.EscapeMarkup()}[/]");
-    }
-
     private void ConvertQuoteBlock(QuoteBlock block, IAnsiConsole buffer)
     {
         foreach (var subBlock in block)
         {
             if (subBlock is ParagraphBlock paragraph)
             {
-                buffer.Markup("[purple] ❯ [/]");
+                _isQuote = true;
+                buffer.Markup(_quoteLinePrefix);
                 ConvertParagraphBlock(paragraph, buffer);
+                _isQuote = false;
                 return;
             }
 
@@ -235,69 +140,13 @@ public class AnsiRenderer
     {
         if (block.Inline is not null)
         {
-            WriteInlines(block.Inline, buffer, markupTag);
+            WriteInlines(buffer, block.Inline, markupTag);
 
             if (!suppressNewLine)
             {
                 buffer.Write("\n");
             }
         }
-    }
-
-    private void ConvertTableBlock(MarkdownTable.Table block, IAnsiConsole buffer)
-    {
-        var table = new Table().Border(TableBorder.Rounded);
-
-        foreach (var item in block)
-        {
-            if (item is MarkdownTable.TableRow row)
-            {
-                var rows = new List<Markup>();
-
-                foreach (var cellItem in row)
-                {
-
-                    if (cellItem is MarkdownTable.TableCell cell)
-                    {
-                        foreach (var paragraphItem in cell)
-                        {
-                            if (paragraphItem is ParagraphBlock paragraph)
-                            {
-                                var cellWriter = new StringWriter();
-                                var settings = new AnsiConsoleSettings
-                                {
-                                    ColorSystem = ColorSystemSupport.Detect,
-                                    Ansi = AnsiSupport.Detect,
-                                    Interactive = InteractionSupport.No,
-                                    Out = new AnsiConsoleOutput(cellWriter)
-                                };
-                                var cellBuffer = AnsiConsole.Create(settings);
-
-                                ConvertParagraphBlock(paragraph, cellBuffer, suppressNewLine: true);
-
-                                if (row.IsHeader)
-                                {
-                                    table.AddColumn($"[purple]{ cellWriter.ToString() }[/]");
-                                }
-                                else
-                                {
-                                    rows.Add(new Markup(cellWriter.ToString()));
-                                }
-                            }
-                        }
-                    }
-
-                }
-
-                if (rows.Any())
-                {
-                    // buffer.Write($"Rows to add: {rows.Count()}");
-                    table.AddRow(rows);
-                }
-            }
-        }
-
-        buffer.Write(table);
     }
 
     private void ConvertFencedCodeBlock(FencedCodeBlock block, IAnsiConsole buffer)
@@ -318,29 +167,17 @@ public class AnsiRenderer
         buffer.Profile.Width = GetConsoleWidth();
     }
 
-    private void ConvertLinkReferenceDefinitionBlock(LinkReferenceDefinitionGroup linkBlock, IAnsiConsole buffer)
-    {
-        foreach (var item in linkBlock)
-        {
-            buffer.WriteLine(string.Join("\n", ((HeadingLinkReferenceDefinition)item)?.Lines));
-        }
-    }
-
     private void ConvertThematicBreakBlock(ThematicBreakBlock thematicBreakBlock, IAnsiConsole buffer)
     {
         const char lineCharacter = '═';
         var charactersRequired = GetConsoleWidth() - 2;
         var line = new string(lineCharacter, charactersRequired);
 
-
         buffer.MarkupLine($"[purple] {line}[/]");
     }
 
     private int GetConsoleWidth()
     {
-        // Throws if no console is attached.
-        // This can happen if the code is executed by some unit test runners.
-        // Rider and VS Code for example.
         try
         {
             // This line will throw is there is no console attached.

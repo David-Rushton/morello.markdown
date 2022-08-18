@@ -77,8 +77,11 @@ public partial class MarkdownConsoleInlineTests : MarkdownConsoleTests
     }
 
     [Theory]
-    [InlineData("## Header", $"{AnsiEscape}[1;38;5;5mHeader{AnsiResetEscape}\n\n\n\n")]
-    public void Given_markdown_with_block_header_2_should_return_correct_ansi_escaped_string(
+    [InlineData("_italic with **bold** text_",          $"{AnsiItalicEscape}italic with {AnsiResetEscape}{AnsiBoldItalicEscape}bold{AnsiResetEscape}{AnsiItalicEscape} text{AnsiResetEscape}\n\n")]
+    [InlineData("**bold with _italic_ text**",          $"{AnsiBoldEscape}bold with {AnsiResetEscape}{AnsiBoldItalicEscape}italic{AnsiResetEscape}{AnsiBoldEscape} text{AnsiResetEscape}\n\n")]
+    [InlineData("~strikethrough with **bold** text~",   $"{AnsiStrikethroughEscape}strikethrough with {AnsiResetEscape}{AnsiBoldStrikethroughEscape}bold{AnsiResetEscape}{AnsiStrikethroughEscape} text{AnsiResetEscape}\n\n")]
+    [InlineData("`code ignores embedded **styles**`",   $"{AnsiCodeStartEscape}code ignores embedded **styles**{AnsiCodeEndEscape}{AnsiResetEscape}\n\n")]
+    public void Given_markdown_with_embedded_inlines_should_render_mix_of_styles(
         string markdown,
         string expected
     )
