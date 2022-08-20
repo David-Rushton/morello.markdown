@@ -78,10 +78,12 @@ public partial class AnsiRenderer
     {
         try
         {
-            // This line will throw is there is no console attached.
-            // This can happen when the code is executed by a test runner, like Rider and VS Code's
-            // integrated test windows.
-            return System.Console.BufferWidth;
+            // Next line will throw if there is no console attached (common when executed by test runners).
+            // Next line will return 0 when called by GitHub actions.
+            var width = System.Console.BufferWidth;
+            return width > 0
+                ? width
+                : throw new Exception("Return default value");
         }
         catch
         {
