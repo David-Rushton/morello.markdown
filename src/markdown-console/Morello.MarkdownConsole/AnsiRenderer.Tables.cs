@@ -24,6 +24,8 @@ public partial class AnsiRenderer
                         {
                             if (paragraphItem is ParagraphBlock paragraph)
                             {
+                                // We need a new console here to create foramtted cells.
+                                // We could create a new Renderer, and pipe the output into a cell.
                                 var cellWriter = new StringWriter();
                                 var settings = new AnsiConsoleSettings
                                 {

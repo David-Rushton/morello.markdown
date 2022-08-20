@@ -22,5 +22,10 @@ public partial class AnsiRenderer
                 console.Write("\n");
             }
         }
+        else
+        {
+            // TODO: Is this possible?
+            // TODO: Inform caller we fellback.
+        }
     }
 }

@@ -24,8 +24,8 @@ public partial class AnsiRenderer
                 return;
             }
 
-            // TODO: Plain text or exception?
-            throw new NotSupportedException($"Unexpected type within QuoteBlock: {subBlock.GetType()}");
+            // TODO: Inform caller we fellback.
+            console.Write(subBlock?.ToString() ?? string.Empty);
         }
     }
 }

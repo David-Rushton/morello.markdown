@@ -58,28 +58,16 @@ public partial class AnsiRenderer
                     break;
 
                 default:
-
                     // We shouldn't be able to get here.
                     // The case above should handle all possibilities.
+                    // Fallback to plain text.
 
-
-                    // if (block is LeafBlock leafBlock)
-                    // {
-                    //     var lines = string.Join("\n", leafBlock.Lines.Lines);
-                    // }
-
-                    // if (block is ContainerBlock containerBlock)
-                    // {
-                    //     containerBlock.
-                    // }
-
-
-                    // TODO: Replace message below either:
-                    // 1) Plain text rendering (fallback option)
-                    // 2) An exception (failure expected only during development option)
-                    console.MarkupLine($"[yellow]Block type not supported: {block.GetType()}[/]");
+                    // TODO: Inform caller we fellback.
+                    foreach (var descendant in block.Descendants())
+                    {
+                        console.Write(descendant.ToString());
+                    }
                     break;
-                    // throw new NotSupportedException($"Markdown document type not supported: {element.GetType}")
             };
 
             console.WriteLine();

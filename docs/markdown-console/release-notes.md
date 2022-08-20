@@ -2,6 +2,23 @@
 
 ## `v1.1.0`
 
+### Plain Text Fallback
+
+`MarkdownConsole` now falls back to plain text for any unsupported markdown elements.  Previously we
+threw an exception or printed an ugly warning message.  This was bad for two reasons:
+
+- Mixing exceptions and printed warnings is inconsistent
+- If we do not support a type we shouldn't omit the content
+
+`MarkdownConsole` is now a best effort renderer.  It will always print all of the text passed to it.
+Where we can we will format it.  Where we cannot we will print plain text.
+
+A future update will introduce a callback/logger/return value that informs the caller where and why
+we have fallen back to plain text.  That is still in the planning.  However I expect this to be available
+in the next few updates.
+
+### Other Changes
+
 We've added support for:
 
 - Thematic breaks  
@@ -34,6 +51,7 @@ following:
 - PBM
 - TGA
 - Webp
+
 ## `v1.0.2`
 
 Improved README.

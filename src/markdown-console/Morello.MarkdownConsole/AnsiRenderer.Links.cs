@@ -51,7 +51,7 @@ public partial class AnsiRenderer
         }
         catch
         {
-            // TODO: We should log or report failures.
+            // TODO: Inform caller we fellback.
             WriteInlineImageLinkFallback(console, label);
         }
     }
@@ -86,6 +86,7 @@ public partial class AnsiRenderer
             }
 
             // TODO: Not sure if we can get here.
+            // TODO: Inform caller we fellback.
         }
     }
 

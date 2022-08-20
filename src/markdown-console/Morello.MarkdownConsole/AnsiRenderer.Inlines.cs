@@ -47,8 +47,8 @@ public partial class AnsiRenderer
                     break;
 
                 default:
-                    // TODO: Plain text or exception.
-                    console.MarkupLine($"[yellow]Could not process type: {inline.GetType()}[/]");
+                    // TODO: Inform caller we fellback.
+                    console.Write(inline?.ToString() ?? string.Empty);
                     break;
             }
         }
@@ -86,8 +86,8 @@ public partial class AnsiRenderer
                 break;
 
             default:
-                // TODO: Consider if exception or plain text.
-                console.MarkupLine($"[yellow]Emphasis type not supported: {emphasis.DelimiterChar}[/]");
+                // TODO: Inform caller we fellback.
+                console.Write(emphasis?.ToString() ?? string.Empty);
                 break;
         }
     }
