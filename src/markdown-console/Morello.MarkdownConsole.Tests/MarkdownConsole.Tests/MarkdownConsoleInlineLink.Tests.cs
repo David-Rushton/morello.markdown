@@ -48,7 +48,7 @@ public partial class MarkdownConsoleInlineLinkTests : MarkdownConsoleTests
         Assert.Equal(expected, actual);
     }
 
-    [Fact(Skip = "Requires fix to quote blocks")]
+    [Fact(Skip = "Requires fix to regex")]
     public void Given_markdown_with_link_reference_definitions_should_render_link()
     {
         var input = @"
@@ -57,6 +57,19 @@ public partial class MarkdownConsoleInlineLinkTests : MarkdownConsoleTests
 [foo bar]
 [foo bar]
 ";
+        var expected = $"^{AnsiLinkEscape}id=[0-9]+;https://example.com{AnsiEscape}\\\\\\{AnsiPurpleEscapePattern}Example{AnsiResetEscapePattern}{AnsiLinkEscape};+\u001b\\\\\n\n$";
+        var actual = new TestConsole()
+            .Write(input)
+            .Output
+            .NormaliseNewLines();
+
+        Assert.Matches(expected, actual);
+    }
+
+    [Fact(Skip = "Requires fix to support AutoLinkInline type")]
+    public void Given_markdown_with_auto_link_inline_should_render_link()
+    {
+        var input = "<https://example.com>";
         var expected = "";
         var actual = new TestConsole()
             .Write(input)
