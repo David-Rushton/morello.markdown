@@ -47,7 +47,7 @@ public static class MarkdownConsole
     public static void Write(string markdown, IAnsiConsole console)
     {
         var doc = GetMarkdownDocument(markdown);
-        new AnsiRenderer().Write(doc, console);
+        new AnsiRenderer(console).Write(doc, console);
     }
 
     private static MarkdownDocument GetMarkdownDocument(string markdown)
