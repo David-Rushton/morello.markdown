@@ -11,7 +11,7 @@ namespace Morello.Markdown.Console;
 
 public partial class AnsiRenderer
 {
-    private void WriteListBlock(ListBlock block)
+    private void WriteListBlock(IAnsiConsole console, ListBlock block)
     {
         var numberedListCounter = 1;
 
@@ -24,10 +24,10 @@ public partial class AnsiRenderer
                 '1' => $"  [purple]{_numberFormatter.Format(numberedListCounter++)} [/]",
                 _ => defaultBullet
             };
-            _console.Markup(bullet);
+            console.Markup(bullet);
             foreach(var subItem in (ListItemBlock)item)
             {
-                WriteParagraphBlock((ParagraphBlock)subItem);
+                WriteParagraphBlock(console, (ParagraphBlock)subItem);
             }
         }
 

@@ -11,10 +11,8 @@ namespace Morello.Markdown.Console;
 
 public partial class AnsiRenderer
 {
-    private void WriteParagraphBlock(ParagraphBlock block, IAnsiConsole? console = null, bool suppressNewLine = false, string? markupTag = null)
+    private void WriteParagraphBlock(IAnsiConsole console, ParagraphBlock block, bool suppressNewLine = false, string? markupTag = null)
     {
-        console = console ?? _console;
-
         if (block.Inline is not null)
         {
             WriteInlines(console, block.Inline, markupTag);

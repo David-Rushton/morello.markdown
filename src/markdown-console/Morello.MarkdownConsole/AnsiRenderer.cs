@@ -1,7 +1,4 @@
-using Markdig.Extensions.AutoIdentifiers;
-using Markdig.Extensions.TaskLists;
 using Markdig.Syntax;
-using Markdig.Syntax.Inlines;
 using Morello.Markdown.Console.Formatters;
 using Morello.Markdown.Console.SyntaxHighlighters;
 using Spectre.Console;
@@ -9,59 +6,55 @@ using MarkdownTable = Markdig.Extensions.Tables;
 
 namespace Morello.Markdown.Console;
 
+/// <summary>
+/// Renders Markdown in the terminal, using Ansi Escape Codes to apply formatting.
+/// </summary>
 public partial class AnsiRenderer
 {
     private static readonly SyntaxHighlighter _syntaxHighlighter = new();
     private static readonly NumberFormatter _numberFormatter = new();
 
-    private readonly IAnsiConsole _console;
-
-    public AnsiRenderer(IAnsiConsole console)
+    public void Write(MarkdownDocument document, IAnsiConsole console)
     {
-        _console = console;
+        WriteBlocks(document, console);
     }
 
-    public void Write(MarkdownDocument document, IAnsiConsole buffer)
-    {
-        WriteBlocks(document, buffer);
-    }
-
-    private void WriteBlocks(IEnumerable<Block> blocks, IAnsiConsole buffer)
+    private void WriteBlocks(IEnumerable<Block> blocks, IAnsiConsole console)
     {
         foreach (var block in blocks)
         {
             switch (block)
             {
                 case HeadingBlock headingBlock:
-                    WriteHeadingBlock(buffer, headingBlock);
+                    WriteHeadingBlock(console, headingBlock);
                     break;
 
                 case ParagraphBlock paragraphBlock:
-                    WriteParagraphBlock(paragraphBlock);
+                    WriteParagraphBlock(console, paragraphBlock);
                     break;
 
                 case QuoteBlock quoteBlock:
-                    WriteQuoteBlock(quoteBlock);
+                    WriteQuoteBlock(console, quoteBlock);
                     break;
 
                 case ListBlock listBlock:
-                    WriteListBlock(listBlock);
+                    WriteListBlock(console, listBlock);
                     break;
 
                 case MarkdownTable.Table tableBlock:
-                    WriteTableBlock(buffer, tableBlock);
+                    WriteTableBlock(console, tableBlock);
                     break;
 
                 case FencedCodeBlock fencedCodeBlock:
-                    WriteFencedCodeBlock(fencedCodeBlock);
+                    WriteFencedCodeBlock(console, fencedCodeBlock);
                     break;
 
                 case LinkReferenceDefinitionGroup linkBlock:
-                    WriteLinkReferenceDefinitionBlock(buffer, linkBlock);
+                    WriteLinkReferenceDefinitionBlock(console, linkBlock);
                     break;
 
                 case ThematicBreakBlock thematicBreakBlock:
-                    WriteThematicBreakBlock(thematicBreakBlock);
+                    WriteThematicBreakBlock(console, thematicBreakBlock);
                     break;
 
                 default:
@@ -84,16 +77,16 @@ public partial class AnsiRenderer
                     // TODO: Replace message below either:
                     // 1) Plain text rendering (fallback option)
                     // 2) An exception (failure expected only during development option)
-                    buffer.MarkupLine($"[yellow]Block type not supported: {block.GetType()}[/]");
+                    console.MarkupLine($"[yellow]Block type not supported: {block.GetType()}[/]");
                     break;
                     // throw new NotSupportedException($"Markdown document type not supported: {element.GetType}")
             };
 
-            buffer.WriteLine();
+            console.WriteLine();
         }
     }
 
-    private int GetConsoleWidth()
+    private static int GetConsoleWidth()
     {
         try
         {

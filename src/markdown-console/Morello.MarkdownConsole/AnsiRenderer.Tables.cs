@@ -34,7 +34,7 @@ public partial class AnsiRenderer
                                 };
                                 var cellBuffer = AnsiConsole.Create(settings);
 
-                                WriteParagraphBlock(paragraph, cellBuffer, suppressNewLine: true);
+                                WriteParagraphBlock(cellBuffer, paragraph, suppressNewLine: true);
 
                                 if (row.IsHeader)
                                 {

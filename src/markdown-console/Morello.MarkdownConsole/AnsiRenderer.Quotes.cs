@@ -11,15 +11,15 @@ namespace Morello.Markdown.Console;
 
 public partial class AnsiRenderer
 {
-    private void WriteQuoteBlock(QuoteBlock block)
+    private void WriteQuoteBlock(IAnsiConsole console, QuoteBlock block)
     {
         foreach (var subBlock in block)
         {
             if (subBlock is ParagraphBlock paragraph)
             {
                 _isQuote = true;
-                _console.Markup(_quoteLinePrefix);
-                WriteParagraphBlock(paragraph);
+                console.Markup(_quoteLinePrefix);
+                WriteParagraphBlock(console, paragraph);
                 _isQuote = false;
                 return;
             }
