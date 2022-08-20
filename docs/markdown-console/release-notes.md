@@ -2,8 +2,6 @@
 
 ## `v1.1.0`
 
-This is a big update!
-
 We've added support for:
 
 - Thematic breaks  
@@ -17,7 +15,9 @@ We've added support for:
   You can now embed inline styles within each other.  
   Example: `**bold text with _bold and italic_ section**`.  
 
-- 🐛 Fixed a bug that lead to incorrect multiline quotes  
+And we've fixed a bug:
+
+- 🐛 Incorrect multiline quotes  
   Quotes are prefixed with a space and a horizontal chevron.  
   Multiline quotes omitted the space on the 2nd and subsequent lines.  
 
