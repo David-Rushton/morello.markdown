@@ -1,5 +1,11 @@
 # Release Notes
 
+## `v1.2.0`
+
+Internal changes only.
+
+We've moved a few things around to simplify future changes.
+
 ## `v1.1.0`
 
 ### Plain Text Fallback

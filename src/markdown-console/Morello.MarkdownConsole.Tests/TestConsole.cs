@@ -10,16 +10,7 @@ public class TestConsole
 
     public TestConsole Write(string markdown)
     {
-        var settings = new AnsiConsoleSettings
-        {
-            ColorSystem = ColorSystemSupport.TrueColor,
-            Ansi = AnsiSupport.Yes,
-            Interactive = InteractionSupport.No,
-            Out = new AnsiConsoleOutput(_writer),
-        };
-        var buffer = AnsiConsole.Create(settings);
-
-        MarkdownConsole.Write(markdown, buffer);
+        MarkdownConsole.Write(markdown, _writer);
 
         return this;
     }

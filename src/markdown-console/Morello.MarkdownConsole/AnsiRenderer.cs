@@ -1,5 +1,6 @@
 using Markdig.Syntax;
 using Morello.Markdown.Console.Formatters;
+using Morello.Markdown.Console.Parsers;
 using Morello.Markdown.Console.SyntaxHighlighters;
 using Spectre.Console;
 using MarkdownTable = Markdig.Extensions.Tables;
@@ -11,50 +12,65 @@ namespace Morello.Markdown.Console;
 /// </summary>
 public partial class AnsiRenderer
 {
-    private static readonly SyntaxHighlighter _syntaxHighlighter = new();
-    private static readonly NumberFormatter _numberFormatter = new();
+    private readonly MarkdownParser _markdownParser;
+    private readonly SyntaxHighlighter _syntaxHighlighter;
+    private readonly NumberFormatter _numberFormatter;
+    private readonly IAnsiConsole _console;
 
-    public void Write(MarkdownDocument document, IAnsiConsole console)
+    internal AnsiRenderer(
+        MarkdownParser markdownParser,
+        SyntaxHighlighter syntaxHighlighter,
+        NumberFormatter numberFormatter,
+        IAnsiConsole console)
     {
-        WriteBlocks(document, console);
+        _markdownParser = markdownParser;
+        _syntaxHighlighter = syntaxHighlighter;
+        _numberFormatter = numberFormatter;
+        _console = console;
     }
 
-    private void WriteBlocks(IEnumerable<Block> blocks, IAnsiConsole console)
+    public void Write(string markdown)
+    {
+        var doc = _markdownParser.ConvertToMarkdownDocument(markdown);
+        WriteBlocks(doc);
+    }
+
+    private void WriteBlocks(IEnumerable<Block> blocks)
     {
         foreach (var block in blocks)
         {
             switch (block)
             {
                 case HeadingBlock headingBlock:
-                    WriteHeadingBlock(console, headingBlock);
+                    WriteHeadingBlock(headingBlock);
                     break;
 
                 case ParagraphBlock paragraphBlock:
-                    WriteParagraphBlock(console, paragraphBlock);
+                    WriteParagraphBlock(paragraphBlock);
                     break;
 
                 case QuoteBlock quoteBlock:
-                    WriteQuoteBlock(console, quoteBlock);
+                    WriteQuoteBlock(quoteBlock);
                     break;
 
                 case ListBlock listBlock:
-                    WriteListBlock(console, listBlock);
+                    WriteListBlock(listBlock);
                     break;
 
                 case MarkdownTable.Table tableBlock:
-                    WriteTableBlock(console, tableBlock);
+                    WriteTableBlock(tableBlock);
                     break;
 
                 case FencedCodeBlock fencedCodeBlock:
-                    WriteFencedCodeBlock(console, fencedCodeBlock);
+                    WriteFencedCodeBlock(fencedCodeBlock);
                     break;
 
                 case LinkReferenceDefinitionGroup linkBlock:
-                    WriteLinkReferenceDefinitionBlock(console, linkBlock);
+                    WriteLinkReferenceDefinitionBlock(linkBlock);
                     break;
 
                 case ThematicBreakBlock thematicBreakBlock:
-                    WriteThematicBreakBlock(console, thematicBreakBlock);
+                    WriteThematicBreakBlock(thematicBreakBlock);
                     break;
 
                 default:
@@ -65,17 +81,17 @@ public partial class AnsiRenderer
                     // TODO: Inform caller we fellback.
                     foreach (var descendant in block.Descendants())
                     {
-                        console.Write(descendant?.ToString() ?? string.Empty);
+                        _console.Write(descendant?.ToString() ?? string.Empty);
                     }
                     break;
             };
 
-            console.WriteLine();
+            _console.WriteLine();
         }
     }
 
-    private static int GetConsoleWidth(IAnsiConsole console)
+    private int GetConsoleWidth()
     {
-        return console.Profile.Width;
+        return _console.Profile.Width;
     }
 }
