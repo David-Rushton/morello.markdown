@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
 
     <PackageId>Morello.MarkdownConsole</PackageId>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <icon>cherry-64.png</icon>
     <Company>Morello</Company>
     <Authors>David Rushton</Authors>

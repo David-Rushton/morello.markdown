@@ -2,7 +2,7 @@ using Markdig.Extensions.TaskLists;
 using Markdig.Syntax.Inlines;
 using Spectre.Console;
 
-namespace Morello.Markdown.Console;
+namespace Morello.Markdown.Console.Renderers;
 
 public partial class AnsiRenderer
 {

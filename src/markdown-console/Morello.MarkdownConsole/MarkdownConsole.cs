@@ -1,4 +1,4 @@
-using Morello.Markdown.Console;
+using Morello.Markdown.Console.Renderers;
 using Spectre.Console;
 
 namespace Morello;

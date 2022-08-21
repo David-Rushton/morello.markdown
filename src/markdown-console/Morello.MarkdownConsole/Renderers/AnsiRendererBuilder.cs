@@ -3,7 +3,7 @@ using Morello.Markdown.Console.Parsers;
 using Morello.Markdown.Console.SyntaxHighlighters;
 using Spectre.Console;
 
-namespace Morello.Markdown.Console;
+namespace Morello.Markdown.Console.Renderers;
 
 /// <summary>
 /// Creates an AnsiRenderer.

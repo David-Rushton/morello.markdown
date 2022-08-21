@@ -1,5 +1,3 @@
-using Spectre.Console;
-
 namespace Morello.Markdown.Console.Tests;
 
 public class TestConsole

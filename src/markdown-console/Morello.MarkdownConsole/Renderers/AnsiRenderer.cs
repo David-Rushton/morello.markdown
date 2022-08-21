@@ -5,7 +5,7 @@ using Morello.Markdown.Console.SyntaxHighlighters;
 using Spectre.Console;
 using MarkdownTable = Markdig.Extensions.Tables;
 
-namespace Morello.Markdown.Console;
+namespace Morello.Markdown.Console.Renderers;
 
 /// <summary>
 /// Renders Markdown in the terminal, using Ansi Escape Codes to apply formatting.

@@ -1,7 +1,7 @@
 using Markdig.Syntax;
 using Spectre.Console;
 
-namespace Morello.Markdown.Console;
+namespace Morello.Markdown.Console.Renderers;
 
 public partial class AnsiRenderer
 {
