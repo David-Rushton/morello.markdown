@@ -32,11 +32,14 @@ We've added support for:
   You can now embed inline styles within each other.  
   Example: `**bold text with _bold and italic_ section**`.  
 
-And we've fixed a bug:
+And we've fixed a few bugs:
 
 - 🐛 Incorrect multiline quotes  
   Quotes are prefixed with a space and a horizontal chevron.  
   Multiline quotes omitted the space on the 2nd and subsequent lines.  
+
+- 🐛 Test runners could crash
+  We didn't support the case where `MarkdownConsole` was not attached to a terminal.
 
 ### Image Links
 
