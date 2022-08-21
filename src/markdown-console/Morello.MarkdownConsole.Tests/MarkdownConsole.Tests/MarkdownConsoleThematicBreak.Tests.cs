@@ -1,4 +1,5 @@
 using Morello.Markdown.Console.Tests.Extensions;
+using Spectre.Console;
 using Xunit;
 
 namespace Morello.Markdown.Console.Tests;
@@ -21,17 +22,8 @@ public partial class MarkdownConsoleThematicBreakTests : MarkdownConsoleTests
         Assert.Equal(expected, actual);
     }
 
-
-    private int GetConsoleWidth()
+    private static int GetConsoleWidth()
     {
-        try
-        {
-            // Can throw when executed by some test runners.
-            return System.Console.BufferWidth;
-        }
-        catch
-        {
-            return 80;
-        }
+        return AnsiConsole.Profile.Width;
     }
 }
