@@ -65,7 +65,7 @@ public partial class AnsiRenderer
                     // TODO: Inform caller we fellback.
                     foreach (var descendant in block.Descendants())
                     {
-                        console.Write(descendant.ToString());
+                        console.Write(descendant?.ToString() ?? string.Empty);
                     }
                     break;
             };
@@ -74,24 +74,9 @@ public partial class AnsiRenderer
         }
     }
 
-    private static int GetConsoleWidth()
+    private static int GetConsoleWidth(IAnsiConsole console)
     {
-        try
-        {
-            // Next line will throw if there is no console attached (common when executed by test runners).
-            // Next line will return 0 when called by GitHub actions.
-            var width = System.Console.BufferWidth;
-            return width > 0
-                ? width
-                : throw new Exception("Return default value");
-        }
-        catch
-        {
-            // There is no console.
-            // Return some fixed value.
-            // 80 picked for no other reason than it was the Windows default for a very long time.
-            return 80;
-        }
+        return console.Profile.Width;
     }
 
     internal class CannotConvertMarkdownException : Exception

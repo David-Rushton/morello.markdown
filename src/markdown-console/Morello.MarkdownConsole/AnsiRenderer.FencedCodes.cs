@@ -25,6 +25,6 @@ public partial class AnsiRenderer
 
         console.WriteLine(highlightedCode);
 
-        console.Profile.Width = GetConsoleWidth();
+        console.Profile.Width = GetConsoleWidth(console);
     }
 }

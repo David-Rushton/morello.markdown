@@ -14,7 +14,7 @@ public partial class AnsiRenderer
     private void WriteThematicBreakBlock(IAnsiConsole console, ThematicBreakBlock thematicBreakBlock)
     {
         const char lineCharacter = '═';
-        var charactersRequired = GetConsoleWidth() - 2;
+        var charactersRequired = GetConsoleWidth(console) - 2;
         var line = new string(lineCharacter, charactersRequired);
 
         console.MarkupLine($"[purple] {line}[/]");
