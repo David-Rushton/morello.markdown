@@ -1,33 +1,29 @@
-using Markdig.Extensions.AutoIdentifiers;
 using Markdig.Extensions.TaskLists;
 using Markdig.Syntax;
-using Markdig.Syntax.Inlines;
-using Morello.Markdown.Console.Formatters;
-using Morello.Markdown.Console.SyntaxHighlighters;
 using Spectre.Console;
-using MarkdownTable = Markdig.Extensions.Tables;
 
 namespace Morello.Markdown.Console;
 
 public partial class AnsiRenderer
 {
-    private void WriteListBlock(IAnsiConsole console, ListBlock block)
+    private const string DefaultBullet = "  [purple] [/] ";
+
+    private void WriteListBlock(ListBlock block)
     {
         var numberedListCounter = 1;
 
         foreach (var item in block)
         {
-            var defaultBullet = "  [purple] [/] ";
             var bullet = (block.BulletType) switch
             {
-                '-' =>  IsTaskList(item) ? "  " : defaultBullet,
+                '-' =>  IsTaskList(item) ? "  " : DefaultBullet,
                 '1' => $"  [purple]{_numberFormatter.Format(numberedListCounter++)} [/]",
-                _ => defaultBullet
+                _ => DefaultBullet
             };
-            console.Markup(bullet);
+            _console.Markup(bullet);
             foreach(var subItem in (ListItemBlock)item)
             {
-                WriteParagraphBlock(console, (ParagraphBlock)subItem);
+                WriteParagraphBlock((ParagraphBlock)subItem);
             }
         }
 

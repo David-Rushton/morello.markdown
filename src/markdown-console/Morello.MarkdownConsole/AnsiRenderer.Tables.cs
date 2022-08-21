@@ -1,12 +1,12 @@
 using Markdig.Syntax;
-using MarkdownTable = Markdig.Extensions.Tables;
 using Spectre.Console;
+using MarkdownTable = Markdig.Extensions.Tables;
 
 namespace Morello.Markdown.Console;
 
 public partial class AnsiRenderer
 {
-    private void WriteTableBlock(IAnsiConsole console, MarkdownTable.Table block)
+    private void WriteTableBlock(MarkdownTable.Table block)
     {
         var table = new Table().Border(TableBorder.Rounded);
 
@@ -24,27 +24,22 @@ public partial class AnsiRenderer
                         {
                             if (paragraphItem is ParagraphBlock paragraph)
                             {
-                                // We need a new console here to create foramtted cells.
-                                // We could create a new Renderer, and pipe the output into a cell.
-                                var cellWriter = new StringWriter();
-                                var settings = new AnsiConsoleSettings
-                                {
-                                    ColorSystem = ColorSystemSupport.Detect,
-                                    Ansi = AnsiSupport.Detect,
-                                    Interactive = InteractionSupport.No,
-                                    Out = new AnsiConsoleOutput(cellWriter)
-                                };
-                                var cellBuffer = AnsiConsole.Create(settings);
-
-                                WriteParagraphBlock(cellBuffer, paragraph, suppressNewLine: true);
+                                // We use a new instace of this class to generate the contents of
+                                // each cell.  This is because we need to avoid calling write and
+                                // markup methods while building our table.
+                                var buffer = new StringWriter();
+                                var subRenderer = new AnsiRendererBuilder()
+                                    .RedirectOutput(buffer)
+                                    .Build();
+                                subRenderer.WriteParagraphBlock(paragraph, suppressNewLine: true);
 
                                 if (row.IsHeader)
                                 {
-                                    table.AddColumn($"[purple]{cellWriter}[/]");
+                                    table.AddColumn($"[purple]{buffer.ToString()}[/]");
                                 }
                                 else
                                 {
-                                    rows.Add(new Markup(cellWriter.ToString()));
+                                    rows.Add(new Markup(buffer.ToString()));
                                 }
                             }
                         }
@@ -59,6 +54,6 @@ public partial class AnsiRenderer
             }
         }
 
-        console.Write(table);
+        _console.Write(table);
     }
 }
