@@ -78,13 +78,4 @@ public partial class AnsiRenderer
     {
         return console.Profile.Width;
     }
-
-    internal class CannotConvertMarkdownException : Exception
-    {
-        internal CannotConvertMarkdownException(string message)
-            : base(message)
-        {
-            // no-op
-        }
-    }
 }
