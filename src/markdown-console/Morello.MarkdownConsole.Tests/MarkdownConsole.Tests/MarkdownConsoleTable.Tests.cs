@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Morello.Markdown.Console.Tests;
 
-public partial class MarkdownConsoleTests
+public partial class MarkdownConsoleTableTests : MarkdownConsoleTests
 {
     [Fact]
     public void Given_markdown_with_block_table_should_return_correct_ansi_escaped_string()

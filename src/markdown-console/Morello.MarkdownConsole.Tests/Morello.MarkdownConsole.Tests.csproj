@@ -24,4 +24,17 @@
     <ProjectReference Include="..\Morello.MarkdownConsole\Morello.MarkdownConsole.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="TestAssets\valid-image.png" />
+    <Content Include="TestAssets\valid-image.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="TestAssets\ansi-escaped-cherry-icon.txt" />
+    <Content Include="TestAssets\ansi-escaped-cherry-icon.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

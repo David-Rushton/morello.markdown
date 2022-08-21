@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
 
     <PackageId>Morello.MarkdownConsole</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
     <icon>cherry-64.png</icon>
     <Company>Morello</Company>
     <Authors>David Rushton</Authors>
@@ -37,7 +37,7 @@
     <None Include="..\README.md" Pack="true" PackagePath=""/>
     <None Include="..\..\..\LICENSE" Pack="true" PackagePath=""/>
 
-    <None Include="..\..\..\images\cherry-64.png" Pack="true" PackagePath=""/>
+    <None Include="..\images\cherry-64.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>

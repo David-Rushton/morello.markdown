@@ -1,5 +1,60 @@
 # Release Notes
 
+## `v1.1.0`
+
+### Plain Text Fallback
+
+`MarkdownConsole` now falls back to plain text for any unsupported markdown elements.  Previously we
+threw an exception or printed an ugly warning message.  This was bad for two reasons:
+
+- Mixing exceptions and printed warnings is inconsistent
+- If we do not support a type we shouldn't omit the content
+
+`MarkdownConsole` is now a best effort renderer.  It will always print all of the text passed to it.
+Where we can we will format it.  Where we cannot we will print plain text.
+
+A future update will introduce a callback/logger/return value that informs the caller where and why
+we have fallen back to plain text.  That is still in the planning.  However I expect this to be available
+in the next few updates.
+
+### Other Changes
+
+We've added support for:
+
+- Thematic breaks  
+  `***`, `---` or `___` adds a horizontal line.
+
+- Image Links  
+  Format: `![fallback text](file_path_or_url_to_image).  
+  See below for more details.  
+
+- Embedded inlines  
+  You can now embed inline styles within each other.  
+  Example: `**bold text with _bold and italic_ section**`.  
+
+And we've fixed a few bugs:
+
+- 🐛 Incorrect multiline quotes  
+  Quotes are prefixed with a space and a horizontal chevron.  
+  Multiline quotes omitted the space on the 2nd and subsequent lines.  
+
+- 🐛 Test runners could crash
+  We didn't support the case where `MarkdownConsole` was not attached to a terminal.
+
+### Image Links
+
+Powered by the amazing [ImageSharp](https://github.com/SixLabors/ImageSharp); we support the
+following:
+
+- TIFF
+- BMP
+- PNG
+- JPEG
+- GIF
+- PBM
+- TGA
+- Webp
+
 ## `v1.0.2`
 
 Improved README.

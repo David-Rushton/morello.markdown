@@ -14,23 +14,24 @@ public static class MarkdownConsole
         .UseAdvancedExtensions()
         .Build();
 
+    private readonly static Lazy<IAnsiConsole> _defaultConsole = new(() =>
+    {
+        return AnsiConsole.Create(new AnsiConsoleSettings
+        {
+            ColorSystem = ColorSystemSupport.Detect,
+            Ansi = AnsiSupport.Detect,
+            Interactive = InteractionSupport.No,
+            Out = new AnsiConsoleOutput(System.Console.Out)
+        });
+    });
+
     /// <summary>
     /// Writes formatted markdown in the console.
     /// </summary>
     /// <param name="markdown">Markdown to format.</param>
     public static void Write(string markdown)
     {
-        var settings = new AnsiConsoleSettings
-        {
-            ColorSystem = ColorSystemSupport.Detect,
-            Ansi = AnsiSupport.Detect,
-            Interactive = InteractionSupport.No,
-            Out = new AnsiConsoleOutput(System.Console.Out)
-        };
-
-        var console = AnsiConsole.Create(settings);
-
-        Write(markdown, console);
+        Write(markdown, _defaultConsole.Value);
     }
 
     /// <summary>

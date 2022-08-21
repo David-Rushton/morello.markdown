@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Morello.Markdown.Console.Tests;
 
-public partial class MarkdownConsoleTests
+public class MarkdownConsoleCodeBlockTests :  MarkdownConsoleTests
 {
     [Fact (Skip = "Flaky.  Results differ when run vs when debugged")]
     public void Given_markdown_with_fenced_code_block_should_return_correct_ansi_escaped_string()
