@@ -4,11 +4,9 @@
 
 This release contains mostly internal changes.
 
-Our test suite now runs in Rider.  Previously all tests failed in Rider because we incorrectly
-detected the level of Ansi escape code support.  
+Our test suite now runs in Rider.  Previously all tests failed in Rider because we incorrectly detected the level of Ansi escape code support.  
 
-We've improved how we fallback to plain text.  The previous approach proved to be too complex.  We
-now fallback - or fail if in test mode.
+We've improved how we fallback to plain text.  The previous approach proved to be too complex.  We now fallback - or fail if in test mode.
 
 ## `v1.2.0`
 
