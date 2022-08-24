@@ -1,5 +1,7 @@
 using Markdig.Syntax;
+using Markdig.Syntax.Inlines;
 using Morello.Markdown.Console.Formatters;
+using Morello.Markdown.Console.Options;
 using Morello.Markdown.Console.Parsers;
 using Morello.Markdown.Console.SyntaxHighlighters;
 using Spectre.Console;
@@ -17,6 +19,8 @@ public partial class AnsiRenderer
     private readonly NumberFormatter _numberFormatter;
     private readonly IAnsiConsole _console;
 
+    private string _markdown = string.Empty;
+
     internal AnsiRenderer(
         MarkdownParser markdownParser,
         SyntaxHighlighter syntaxHighlighter,
@@ -31,6 +35,7 @@ public partial class AnsiRenderer
 
     public void Write(string markdown)
     {
+        _markdown = markdown;
         var doc = _markdownParser.ConvertToMarkdownDocument(markdown);
         WriteBlocks(doc);
     }
@@ -76,13 +81,7 @@ public partial class AnsiRenderer
                 default:
                     // We shouldn't be able to get here.
                     // The case above should handle all possibilities.
-                    // Fallback to plain text.
-
-                    // TODO: Inform caller we fellback.
-                    foreach (var descendant in block.Descendants())
-                    {
-                        _console.Write(descendant?.ToString() ?? string.Empty);
-                    }
+                    ThrowOrFallbackToPlainText(block);
                     break;
             };
 
@@ -93,5 +92,38 @@ public partial class AnsiRenderer
     private int GetConsoleWidth()
     {
         return _console.Profile.Width;
+    }
+
+    private void ThrowOrFallbackToPlainText(MarkdownObject markdownObject)
+    {
+        var span = markdownObject.Span;
+
+        if (FeatureFlags.ThrowOnUnsupportedMarkdownType)
+        {
+            var exceptionMessage = $"Supported markdown type {markdownObject.GetType()} found from character {span.Start} to {span.End}: {span}.";
+            throw new Exception(exceptionMessage);
+        }
+
+        _console.Write(_markdown[span.Start..span.End]);
+    }
+
+    private void ThrowOrFallbackToPlainText(string exceptionMessage, string fallbackText)
+    {
+        if (FeatureFlags.ThrowOnUnsupportedMarkdownType)
+        {
+            throw new Exception(exceptionMessage);
+        }
+
+        _console.Write(fallbackText);
+    }
+
+    private void ThrowOrFallbackToPlainText(string exceptionMessage, Markup fallbackMarkupText)
+    {
+        if (FeatureFlags.ThrowOnUnsupportedMarkdownType)
+        {
+            throw new Exception(exceptionMessage);
+        }
+
+        _console.Write(fallbackMarkupText);
     }
 }

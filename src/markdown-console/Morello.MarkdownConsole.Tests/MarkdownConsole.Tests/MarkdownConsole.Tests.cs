@@ -10,7 +10,9 @@ public abstract class MarkdownConsoleTests
     public const string AnsiResetEscape = "\u001b[0m";
     public const string AnsiResetEscapePattern = "\u001b\\[0m";
     public const string AnsiBoldEscape = "\u001b[1m";
+    public const string AnsiBoldEscapePattern = "\u001b\\[1m";
     public const string AnsiItalicEscape = "\u001b[3m";
+    public const string AnsiItalicEscapePattern = "\u001b\\[3m";
     public const string AnsiBoldItalicEscape = "\u001b[1;3m";
     public const string AnsiStrikethroughEscape = "\u001b[9m";
     public const string AnsiBoldStrikethroughEscape = "\u001b[1;9m";

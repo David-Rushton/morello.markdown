@@ -46,8 +46,8 @@ public partial class AnsiRenderer
                     break;
 
                 default:
-                    // TODO: Inform caller we fellback.
-                    _console.Write(inline?.ToString() ?? string.Empty);
+                    // We shouldn't be able to get here.
+                    ThrowOrFallbackToPlainText(inline);
                     break;
             }
         }
@@ -85,8 +85,11 @@ public partial class AnsiRenderer
                 break;
 
             default:
-                // TODO: Inform caller we fellback.
-                _console.Write(emphasis?.ToString() ?? string.Empty);
+                // We shouldn't be able to get here.
+                // All cases of emphasis should be handled above.
+                var exceptionMessage = $"Unsupported emphasis delimited found: {emphasis.DelimiterChar}.";
+                var fallbackText = emphasis?.ToString() ?? string.Empty;
+                ThrowOrFallbackToPlainText(exceptionMessage, fallbackText);
                 break;
         }
     }

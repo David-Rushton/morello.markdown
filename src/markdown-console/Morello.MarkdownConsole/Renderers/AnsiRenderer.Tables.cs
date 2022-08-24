@@ -33,13 +33,14 @@ public partial class AnsiRenderer
                                     .Build();
                                 subRenderer.WriteParagraphBlock(paragraph, suppressNewLine: true);
 
+                                var escapedBuffer = buffer.ToString().EscapeMarkup();
                                 if (row.IsHeader)
                                 {
-                                    table.AddColumn($"[purple]{buffer.ToString()}[/]");
+                                    table.AddColumn($"[purple]{escapedBuffer}[/]");
                                 }
                                 else
                                 {
-                                    rows.Add(new Markup(buffer.ToString()));
+                                    rows.Add(new Markup(escapedBuffer));
                                 }
                             }
                         }

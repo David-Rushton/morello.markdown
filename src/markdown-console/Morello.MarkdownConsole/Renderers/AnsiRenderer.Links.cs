@@ -1,5 +1,6 @@
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
+using Morello.Markdown.Console.Extensions;
 using Spectre.Console;
 
 namespace Morello.Markdown.Console.Renderers;
@@ -11,14 +12,34 @@ public partial class AnsiRenderer
 
     private void WriteInlineLink(LinkInline link)
     {
-        var label = link.FirstChild?.ToString() ?? string.Empty;
+        var label = link.Label; // ?? link.Descendants().FirstOrDefault()?.ToString();
         var url = link.Url;
 
-        if (url is null)
+        if (label is null)
         {
-            WriteInlineImageLinkFallback(label);
+            // Label may be contain a series of sub items, with different formats.
+            var writer = new StringWriter();
+            var subRenderer = new AnsiRendererBuilder()
+                .InheritSettings(_console)
+                .RedirectOutput(writer)
+                .Build();
+
+            subRenderer.WriteInlines(link.Descendants<Inline>());
+            label = writer.ToString();
         }
-        else if (link.IsImage)
+
+        if (label is null && url is null)
+        {
+            // I'm not sure this is possible.
+            // Without a label and uri there is nothing to show.
+            return;
+        }
+
+        // TODO: Temp fix.  Requires more thought.
+        label ??= "link label missing";
+        url ??= "link uri missing";
+
+        if (link.IsImage)
         {
             WriteInlineImageLink(label, url);
         }
@@ -30,63 +51,56 @@ public partial class AnsiRenderer
 
     private void WriteInlineTextLink(string label, string url)
     {
-        _console.Markup($"[purple link={url}]{label}[/]");
+        _console.Markup($"[purple link={url}]{label.EscapeMarkup()}[/]");
     }
 
     private void WriteInlineImageLink(string label, string url)
     {
         try
         {
-            if (File.Exists(url))
+            var data = File.Exists(url)
+                ? OpenImage(url)
+                : DownloadImage(url);
+
+            if (data is null)
             {
-                WriteInlineImageLinkUsingFile(url);
+                throw new Exception("Cannot download image");
             }
-            else
-            {
-                // Best guess, this is a url.
-                // We could check, but it fails we will fallback anyway.
-                WriteInlineImageLinkUsingWebRequest(url);
-            }
+
+            var image = new CanvasImage(data);
+            _console.Write(image);
         }
         catch
         {
-            // TODO: Inform caller we fellback.
-            WriteInlineImageLinkFallback(label);
+            WriteInlineLinkFallback(label, url);
         }
     }
 
-    private void WriteInlineImageLinkUsingFile(string path)
-    {
-        using var data = new FileInfo(path).OpenRead();
-        var image = new CanvasImage(data);
-        _console.Write(image);
-    }
+    private Stream? OpenImage(string path) => new FileInfo(path).OpenRead();
 
-    private void WriteInlineImageLinkUsingWebRequest(string url)
-    {
-        using var data = _client.GetStreamAsync(url).Result ?? throw new System.Exception(CannotDownloadMessage);
-        var image = new CanvasImage(data);
-        _console.Write(image);
-    }
+    private Stream? DownloadImage(string url) => _client.GetStreamAsync(url).Result;
 
-    private void WriteInlineImageLinkFallback(string label)
+    private void WriteInlineLinkFallback(string label, string uri)
     {
-        // Use purple and italic to denote a broken link.
-        _console.Markup($"[purple italic]{label}[/]");
+        var exceptionMessage = $"Cannot create image link from uri: {uri}.  Falling back to plain text.";
+        var fallbackMarkup = new Markup($"[purple italic]{label.EscapeMarkup()}[/]");
+        ThrowOrFallbackToPlainText(exceptionMessage, fallbackMarkup);
+
     }
 
     private void WriteLinkReferenceDefinitionBlock(LinkReferenceDefinitionGroup linkBlock)
     {
         foreach (var item in linkBlock)
         {
-           if (item is LinkReferenceDefinition linkReference)
+            if (item is LinkReferenceDefinition linkReference)
             {
-                _console.Markup($"[link={linkReference.Url}]{linkReference.Title}[/]");
+                var escapedTitle = linkReference.Label.EscapeMarkup();
+                _console.Markup($"[link={linkReference.Url}]{escapedTitle}[/]");
+                continue;
             }
 
-            // TODO: Not sure if we can get here.
-            // TODO: Inform caller we fellback.
+            // We shouldn't be able to get here.
+            ThrowOrFallbackToPlainText(item);
         }
     }
-
 }

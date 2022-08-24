@@ -11,10 +11,12 @@ public partial class AnsiRenderer
 
         if (rawContent is not null)
         {
+            var escapedHeader = rawContent.EscapeMarkup();
+
             if (block.Level == 1)
             {
                 _console
-                    .Write(new FigletText(rawContent.EscapeMarkup())
+                    .Write(new FigletText(escapedHeader)
                     .Alignment(Justify.Left)
                     .Color(Color.Purple));
                 return;
@@ -22,7 +24,7 @@ public partial class AnsiRenderer
 
             // Levels 2 through 6 are rendered with a common format.
             // We could differentiate by colour and font weight.
-            _console.MarkupLine($"[bold purple]{rawContent.EscapeMarkup()}[/]");
+            _console.MarkupLine($"[bold purple]{escapedHeader}[/]");
         }
     }
 }

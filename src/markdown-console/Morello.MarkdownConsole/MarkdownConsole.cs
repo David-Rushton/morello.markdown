@@ -1,5 +1,4 @@
 using Morello.Markdown.Console.Renderers;
-using Spectre.Console;
 
 namespace Morello;
 
@@ -8,10 +7,7 @@ namespace Morello;
 /// </summary>
 public static class MarkdownConsole
 {
-    private readonly static Lazy<AnsiRenderer> _defaultRenderer = new(() =>
-    {
-        return new AnsiRendererBuilder().Build();
-    });
+    private static readonly Lazy<AnsiRenderer> DefaultRenderer = new(() => new AnsiRendererBuilder().Build());
 
     /// <summary>
     /// Writes formatted markdown in the console.
@@ -19,14 +15,14 @@ public static class MarkdownConsole
     /// <param name="markdown">Markdown to format.</param>
     public static void Write(string markdown)
     {
-        _defaultRenderer.Value.Write(markdown);
+        DefaultRenderer.Value.Write(markdown);
     }
 
     /// <summary>
     /// Writes formatted markdown in the console.
     /// </summary>
     /// <param name="markdown">Markdown to format.</param>
-    /// <param name="console">
+    /// <param name="writer">
     ///     Override the default console.
     ///     <remarks>
     ///     Useful for test and debugging only.

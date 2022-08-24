@@ -1,5 +1,6 @@
 using Markdig.Extensions.TaskLists;
 using Markdig.Syntax;
+using Morello.Markdown.Console.Extensions;
 using Spectre.Console;
 
 namespace Morello.Markdown.Console.Renderers;
@@ -20,10 +21,19 @@ public partial class AnsiRenderer
                 '1' => $"  [purple]{_numberFormatter.Format(numberedListCounter++)} [/]",
                 _ => DefaultBullet
             };
+
             _console.Markup(bullet);
+
             foreach(var subItem in (ListItemBlock)item)
             {
-                WriteParagraphBlock((ParagraphBlock)subItem);
+                if (subItem is ParagraphBlock paragraphBlock)
+                {
+                    WriteParagraphBlock(paragraphBlock);
+                    continue;
+                }
+
+                // We shouldn't be able to get here.
+                ThrowOrFallbackToPlainText(subItem);
             }
         }
 

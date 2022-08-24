@@ -41,6 +41,7 @@ public partial class MarkdownConsoleInlineLinkTests : MarkdownConsoleTests
     {
         var expected = $"{AnsiPurpleItalicEscape}Example{AnsiResetEscape}\n\n";
         var actual = new TestConsole()
+            .FallbackToPlainText()
             .Write($"![Example]({GetInvalidImageUrl()})")
             .Output
             .NormaliseNewLines();
@@ -48,7 +49,20 @@ public partial class MarkdownConsoleInlineLinkTests : MarkdownConsoleTests
         Assert.Equal(expected, actual);
     }
 
-    [Fact(Skip = "Requires fix to regex")]
+    [Fact(Skip = "Failing test.  We don't write the label correctly")]
+    public void Given_markdown_with_formatted_link_label_should_render_link()
+    {
+        var input = "[link with _mix_ of *formats* `present`](https://example.com)";
+        var expected = $"^{AnsiLinkEscape}id=[0-9]+;https://example.com{AnsiEscape}\\\\\\{AnsiPurpleEscapePattern}link with {AnsiItalicEscapePattern}mix{AnsiResetEscapePattern} of {AnsiBoldEscapePattern}formats{AnsiResetEscapePattern}";
+        var actual = new TestConsole()
+            .Write(input)
+            .Output
+            .NormaliseNewLines();
+
+        Assert.Matches(expected, actual);
+    }
+
+    [Fact(Skip = "This is a failing test.  We do not support link reference types yet.")]
     public void Given_markdown_with_link_reference_definitions_should_render_link()
     {
         var input = @"

@@ -12,14 +12,16 @@ public partial class AnsiRenderer
             if (subBlock is ParagraphBlock paragraph)
             {
                 _isQuote = true;
+
                 _console.Markup(_quoteLinePrefix);
                 WriteParagraphBlock(paragraph);
+
                 _isQuote = false;
                 return;
             }
 
-            // TODO: Inform caller we fellback.
-            _console.Write(subBlock?.ToString() ?? string.Empty);
+            // We shouldn't be able to get here.
+            ThrowOrFallbackToPlainText(subBlock);
         }
     }
 }

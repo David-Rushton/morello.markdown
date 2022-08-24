@@ -1,4 +1,6 @@
+using Morello.Markdown.Console.Converters;
 using Morello.Markdown.Console.Formatters;
+using Morello.Markdown.Console.Options;
 using Morello.Markdown.Console.Parsers;
 using Morello.Markdown.Console.SyntaxHighlighters;
 using Spectre.Console;
@@ -10,16 +12,13 @@ namespace Morello.Markdown.Console.Renderers;
 /// </summary>
 public class AnsiRendererBuilder
 {
-    private static readonly SyntaxHighlighter _syntaxHighlighter = new();
-    private static readonly NumberFormatter _numberFormatter = new();
-    private static readonly MarkdownParser _parser = new();
+    private static readonly SyntaxHighlighter SyntaxHighlighter = new();
+    private static readonly NumberFormatter NumberFormatter = new();
+    private static readonly MarkdownParser Parser = new();
 
+    private AnsiSupport _ansiSupport = AnsiSupport.Detect;
+    private ColorSystemSupport _colorSystem = ColorSystemSupport.Detect;
     private TextWriter? _writer;
-
-    internal AnsiRendererBuilder()
-    {
-        // no-op.
-    }
 
     /// <summary>
     /// Adds a customer writer.
@@ -34,9 +33,24 @@ public class AnsiRendererBuilder
         return this;
     }
 
+    /// <summary>
+    /// Clone capabilities from an existing console.
+    /// </summary>
+    public AnsiRendererBuilder InheritSettings(IAnsiConsole console)
+    {
+        _colorSystem = ColorSystemSupportConverter.FromColorSystem(console.Profile.Capabilities.ColorSystem);
+        _ansiSupport = AnsiSupportConverter.FromAnsiSupported(console.Profile.Capabilities.Ansi);
+
+        return this;
+    }
+
+    /// <summary>
+    /// Builds and returns an AnsiRenderer.
+    /// </summary>
     public AnsiRenderer Build()
     {
-        return new AnsiRenderer(_parser, _syntaxHighlighter, _numberFormatter, GetConsole());
+        var console = GetConsole();
+        return new AnsiRenderer(Parser, SyntaxHighlighter, NumberFormatter, console);
     }
 
     private IAnsiConsole GetConsole()
@@ -46,10 +60,16 @@ public class AnsiRendererBuilder
             return AnsiConsole.Console;
         }
 
+        if (FeatureFlags.ForceAnsiColour)
+        {
+            _ansiSupport = AnsiSupport.Yes;
+            _colorSystem = ColorSystemSupport.TrueColor;
+        }
+
         var console = AnsiConsole.Create(new AnsiConsoleSettings
         {
-            ColorSystem = ColorSystemSupport.Detect,
-            Ansi = AnsiSupport.Detect,
+            ColorSystem = _colorSystem,
+            Ansi = _ansiSupport,
             Interactive = InteractionSupport.No,
             Out = new AnsiConsoleOutput(_writer)
         });
