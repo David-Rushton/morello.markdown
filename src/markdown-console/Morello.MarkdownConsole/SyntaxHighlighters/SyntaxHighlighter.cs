@@ -17,9 +17,18 @@ public class SyntaxHighlighter
     /// </summary>
     /// <param name="code">Highlight the syntax within this code block</param>
     /// <param name="language">Hint provided to the syntax highlighter</param>
+    /// <param name="forceBasicHighlighter">Ensure we use the basic highlighter.  Useful for test environments where Bat may not be installed.</param>
     /// <returns></returns>
-    public string GetHighlightedSyntax(string code, string? language)
+    public string GetHighlightedSyntax(string code, string? language, bool forceBasicHighlighter)
     {
+        if (forceBasicHighlighter)
+        {
+            if (_highlighters.Last().TryGetHighlightSyntax(code, language, out var highlightedCode))
+            {
+                return highlightedCode;
+            }
+        }
+
         foreach (var highlighter in _highlighters)
         {
             if (highlighter.TryGetHighlightSyntax(code, language, out var highlightedCode))

@@ -1,7 +1,9 @@
 using Markdig.Syntax;
+using Markdig.Syntax.Inlines;
+using Morello.Markdown.Console.Extensions;
 using Spectre.Console;
 
-namespace Morello.Markdown.Console;
+namespace Morello.Markdown.Console.Renderers;
 
 public partial class AnsiRenderer
 {
@@ -15,11 +17,11 @@ public partial class AnsiRenderer
             {
                 _console.Write("\n");
             }
+
+            return;
         }
-        else
-        {
-            // TODO: Is this possible?
-            // TODO: Inform caller we fellback.
-        }
+
+        // We shouldn't be able to get here.
+        ThrowOrFallbackToPlainText(block);
     }
 }

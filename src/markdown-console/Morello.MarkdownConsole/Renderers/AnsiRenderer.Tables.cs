@@ -2,7 +2,7 @@ using Markdig.Syntax;
 using Spectre.Console;
 using MarkdownTable = Markdig.Extensions.Tables;
 
-namespace Morello.Markdown.Console;
+namespace Morello.Markdown.Console.Renderers;
 
 public partial class AnsiRenderer
 {
@@ -33,13 +33,14 @@ public partial class AnsiRenderer
                                     .Build();
                                 subRenderer.WriteParagraphBlock(paragraph, suppressNewLine: true);
 
+                                var escapedBuffer = buffer.ToString().EscapeMarkup();
                                 if (row.IsHeader)
                                 {
-                                    table.AddColumn($"[purple]{buffer.ToString()}[/]");
+                                    table.AddColumn($"[purple]{escapedBuffer}[/]");
                                 }
                                 else
                                 {
-                                    rows.Add(new Markup(buffer.ToString()));
+                                    rows.Add(new Markup(escapedBuffer));
                                 }
                             }
                         }
