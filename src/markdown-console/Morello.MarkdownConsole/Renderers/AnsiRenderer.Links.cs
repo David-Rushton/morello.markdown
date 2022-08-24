@@ -85,7 +85,6 @@ public partial class AnsiRenderer
         var exceptionMessage = $"Cannot create image link from uri: {uri}.  Falling back to plain text.";
         var fallbackMarkup = new Markup($"[purple italic]{label.EscapeMarkup()}[/]");
         ThrowOrFallbackToPlainText(exceptionMessage, fallbackMarkup);
-
     }
 
     private void WriteLinkReferenceDefinitionBlock(LinkReferenceDefinitionGroup linkBlock)
