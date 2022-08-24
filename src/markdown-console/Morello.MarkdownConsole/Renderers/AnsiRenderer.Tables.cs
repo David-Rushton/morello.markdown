@@ -1,5 +1,6 @@
 using Markdig.Syntax;
 using Spectre.Console;
+using Spectre.Console;
 using MarkdownTable = Markdig.Extensions.Tables;
 
 namespace Morello.Markdown.Console.Renderers;
@@ -55,6 +56,6 @@ public partial class AnsiRenderer
             }
         }
 
-        _console.Write(table);
+        __console.Write(table);
     }
 }

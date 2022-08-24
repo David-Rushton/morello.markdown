@@ -25,7 +25,7 @@ public partial class AnsiRenderer
                     break;
 
                 case CodeInline code:
-                    _console.Markup($"[purple][invert]{ code.Content.EscapeMarkup() }[/][/]");
+                    __console.Markup($"[purple][invert]{ code.Content.EscapeMarkup() }[/][/]");
                     break;
 
                 case LinkInline link:
@@ -35,14 +35,14 @@ public partial class AnsiRenderer
                 case LineBreakInline:
                     if (_isQuote)
                     {
-                        _console.Markup($"\n{_quoteLinePrefix}");
+                        __console.Markup($"\n{_quoteLinePrefix}");
                         break;
                     }
-                    _console.WriteLine();
+                    __console.WriteLine();
                     break;
 
                 case TaskList task:
-                    _console.Markup(task.Checked ? "[purple] [/]" : "[purple] [/]");
+                    __console.Markup(task.Checked ? "[purple] [/]" : "[purple] [/]");
                     break;
 
                 default:
@@ -62,7 +62,7 @@ public partial class AnsiRenderer
             result = $"[{markupTag.Trim()}]{result}[/]";
         }
 
-        _console.Markup(result);
+        __console.Markup(result);
     }
 
     private void WriteEmphasisInline(EmphasisInline emphasis, string? markupTag = null)

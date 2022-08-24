@@ -16,9 +16,9 @@ public partial class AnsiRenderer
         // Although the escape codes are not printed directly AnsiConsole will count them towards
         // the line limit.  This will lead to unexpected line breaks.  To work around this we override
         // the buffer width while writing syntax.
-        _console.Profile.Width = int.MaxValue;
+        __console.Profile.Width = int.MaxValue;
 
-        _console.WriteLine(highlightedCode);
+        __console.WriteLine(highlightedCode);
 
         _console.Profile.Width = GetConsoleWidth();
     }
