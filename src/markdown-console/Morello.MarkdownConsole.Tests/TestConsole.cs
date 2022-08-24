@@ -11,7 +11,7 @@ public class TestConsole
         // By default MarkdownConsole avoids throwing.
         // It fallsback to plain text.
         // This can hide issues during testing.
-        Environment.SetEnvironmentVariable("MORELLO_MARKDOWN_CONSOLE_THROW_ON_UNSUPPORTED_TYPE", "false");
+        Environment.SetEnvironmentVariable("MORELLO_MARKDOWN_CONSOLE_THROW_ON_UNSUPPORTED_TYPE", "true");
 
         // By default we try the Bat highlighter first.
         // However this is not available in all test environments.
@@ -26,7 +26,7 @@ public class TestConsole
 
     public TestConsole FallbackToPlainText()
     {
-        Environment.SetEnvironmentVariable("MORELLO_MARKDOWN_CONSOLE_THROW_ON_UNSUPPORTED_TYPE", "true");
+        Environment.SetEnvironmentVariable("MORELLO_MARKDOWN_CONSOLE_THROW_ON_UNSUPPORTED_TYPE", "false");
         return this;
     }
 
