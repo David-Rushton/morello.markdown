@@ -5,7 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>md-cli</AssemblyName>
     <Nullable>enable</Nullable>
-    <Version>0.1.1</Version>
+    <Version>0.2.0</Version>
     <!--
         Fixes: error NETSDK1134: Building a solution with a specific RuntimeIdentifier is not supported.
         This has to be overriden when building for other OSs.
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Morello.MarkdownConsole" Version="1.0.1" />
+    <PackageReference Include="Morello.MarkdownConsole" Version="1.3.0" />
     <PackageReference Include="Spectre.Console" Version="0.44.0" />
     <PackageReference Include="Spectre.Console.Analyzer" Version="0.44.0" />
   </ItemGroup>
