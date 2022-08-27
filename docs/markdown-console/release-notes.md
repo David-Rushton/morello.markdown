@@ -1,5 +1,9 @@
 # Release Notes
 
+## `v1.3.1`
+
+Bug fix.  We failed to print the final character when falling back to plain text.
+
 ## `v1.3.0`
 
 This release contains mostly internal changes.

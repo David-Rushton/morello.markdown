@@ -31,4 +31,18 @@ bar";
 
         Assert.Equal(expected, actual);
     }
+
+    [Fact]
+    public void Given_markdown_with_plain_text_fallback_should_not_skip_final_character()
+    {
+        var input = "<https://foo.bar.baz>";
+        var expected = "<https://foo.bar.baz>\n\n";
+        var actual = new TestConsole()
+            .FallbackToPlainText()
+            .Write(input)
+            .Output
+            .NormaliseNewLines();
+
+        Assert.Equal(expected, actual);
+    }
 }

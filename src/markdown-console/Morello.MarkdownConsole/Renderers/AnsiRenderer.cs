@@ -100,11 +100,14 @@ public partial class AnsiRenderer
 
         if (FeatureFlags.ThrowOnUnsupportedMarkdownType)
         {
-            var exceptionMessage = $"Supported markdown type {markdownObject.GetType()} found from character {span.Start} to {span.End}: {span}.";
+            var exceptionMessage = $"Unsupported markdown type {markdownObject.GetType()} found from character {span.Start} to {span.End}: {span}.";
             throw new Exception(exceptionMessage);
         }
 
-        _console.Write(_markdown[span.Start..span.End]);
+        // Ranges in C# use an inclusive start and exclusive end.
+        // We want the final character.
+        var end = span.End + 1;
+        _console.Write(_markdown[span.Start..end]);
     }
 
     private void ThrowOrFallbackToPlainText(string exceptionMessage, string fallbackText)
