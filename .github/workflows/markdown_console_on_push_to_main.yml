@@ -23,13 +23,13 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: ./src/markdown-console/
-      run: dotnet build --no-restore --configuration release
+      run: dotnet build --configuration Release
     - name: Test
       working-directory: ./src/markdown-console/
-      run: dotnet test --no-build --verbosity normal --configuration release
+      run: dotnet test --no-build --verbosity normal --configuration Release
     - name: Package
       working-directory: ./src/markdown-console/
-      run: dotnet pack --include-symbols --configuration release
+      run: dotnet pack --include-symbols --configuration Release
     - name: Publish
       working-directory: ./src/markdown-console/
       env:

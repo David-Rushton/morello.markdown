@@ -21,17 +21,20 @@ jobs:
     - name: Restore dependencies
       working-directory: ./src/markdown-cli/
       run: dotnet restore
+    - name: Build
+      working-directory: ./src/markdown-cli/
+      run: dotnet build --configuration Release
     - name: Test
       working-directory: ./src/markdown-cli/
       run: dotnet test --no-build --verbosity normal --configuration Release
-    - name: Build
+    - name: Create Binaries
       working-directory: ./src/markdown-cli/
       run: |
         # Windows
-        dotnet build ./Morello.MarkdownCli/Markdown.Cli.csproj --configuration Release --runtime win-x64
+        dotnet publish ./Morello.MarkdownCli/Markdown.Cli.csproj --configuration Release --runtime win-x64
 
         # Linux
-        dotnet build ./Morello.MarkdownCli/Markdown.Cli.csproj --configuration Release --runtime linux-x64
+        dotnet publish ./Morello.MarkdownCli/Markdown.Cli.csproj --configuration Release --runtime linux-x64
     - name: Tag and Release
       working-directory: ./src/markdown-cli/
       env:

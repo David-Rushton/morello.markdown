@@ -22,12 +22,12 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: ./src/markdown-console/
-      run: dotnet build --no-restore --configuration debug
+      run: dotnet build --no-restore --configuration Debug
     - name: Test
       working-directory: ./src/markdown-console/
-      run: dotnet test --no-build --verbosity normal --configuration debug
+      run: dotnet test --no-build --verbosity normal --configuration Debug
       # Test we haven't broken our ability to package
       # Better to break before we merge into main
     - name: Package
       working-directory: ./src/markdown-console/
-      run: dotnet pack --include-symbols --configuration debug
+      run: dotnet pack --include-symbols --configuration Debug
