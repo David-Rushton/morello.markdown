@@ -1,5 +1,11 @@
 # Release Notes
 
+## `v1.5.0`
+
+We have added support for [auto links](https://spec.commonmark.org/0.30/#autolinks).
+
+![auto link screen shot](../../images/examples/auto-link-example.png)
+
 ## `v1.4.0`
 
 We've added support for [`.NetStandard 2.0`](https://docs.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0)!

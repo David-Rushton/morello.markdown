@@ -81,17 +81,19 @@ public partial class MarkdownConsoleInlineLinkTests : MarkdownConsoleTests
         Assert.Matches(expected, actual);
     }
 
-    [Fact(Skip = "Requires fix to support AutoLinkInline type")]
-    public void Given_markdown_with_auto_link_inline_should_render_link()
+    [Theory]
+    [InlineData("https://example.com")]
+    [InlineData("mailto:sayhello@morello.tools")]
+    public void Given_markdown_with_auto_link_inline_should_render_link(string uri)
     {
-        var input = "<https://example.com>";
-        var expected = "";
+        var input = $"<{uri}>";
+        var expected = $"^{AnsiLinkEscape}id=[0-9]+;{uri}{AnsiEscape}\\\\\\{AnsiPurpleEscapePattern}{uri}{AnsiResetEscapePattern}{AnsiLinkEscape};+\u001b\\\\\n\n$";
         var actual = new TestConsole()
             .Write(input)
             .Output
             .NormaliseNewLines();
 
-        Assert.Equal(expected, actual);
+        Assert.Matches(expected, actual);
     }
 
     private string GetValidImageUrl()
