@@ -28,7 +28,7 @@ FROM    Bar;
         Assert.Equal(expected, actual);
     }
 
-    [Fact(Skip = "Flaky.  Crashes if run in debug mode.")]
+    [Fact (Skip = "Flakey.  We use env vars for config, which fails when run as tests are run in parallel")]
     public void Given_markdown_with_indented_code_block_should_return_correct_ansi_escaped_string()
     {
         var input = @"
