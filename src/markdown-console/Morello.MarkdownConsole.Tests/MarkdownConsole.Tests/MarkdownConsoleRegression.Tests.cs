@@ -32,7 +32,7 @@ bar";
         Assert.Equal(expected, actual);
     }
 
-    [Fact]
+    [Fact (Skip = "Flakey.  We use env vars for config, which fails when run as tests are run in parallel")]
     public void Given_markdown_with_plain_text_fallback_should_not_skip_final_character()
     {
         var input = "<https://foo.bar.baz>";

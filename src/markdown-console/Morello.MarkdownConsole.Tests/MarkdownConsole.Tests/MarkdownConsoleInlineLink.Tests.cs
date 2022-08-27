@@ -36,7 +36,7 @@ public partial class MarkdownConsoleInlineLinkTests : MarkdownConsoleTests
         Assert.Equal(expected, actual);
     }
 
-    [Fact(Skip = "Flakey.  Fails when run via dotnet run but not via VS Code or rider test runners.")]
+    [Fact (Skip = "Flakey.  We use env vars for config, which fails when run as tests are run in parallel")]
     public void Given_markdown_with_invalid_image_link_should_render_fallback_text()
     {
 
