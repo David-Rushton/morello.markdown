@@ -32,6 +32,10 @@ public partial class AnsiRenderer
                     WriteInlineLink(link);
                     break;
 
+                case AutolinkInline link:
+                    WriteAutoInlineLink(link);
+                    break;
+
                 case LineBreakInline:
                     if (_isQuote)
                     {

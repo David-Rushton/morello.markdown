@@ -1,6 +1,5 @@
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
-using Morello.Markdown.Console.Extensions;
 using Spectre.Console;
 
 namespace Morello.Markdown.Console.Renderers;
@@ -47,6 +46,16 @@ public partial class AnsiRenderer
         {
             WriteInlineTextLink(label, url);
         }
+    }
+
+    private void WriteAutoInlineLink(AutolinkInline link)
+    {
+        // Auto links use the url as the label.
+        // Source: https://spec.commonmark.org/0.30/#autolinks
+        var label = link.Url;
+        var url = label;
+
+        WriteInlineTextLink(label, url);
     }
 
     private void WriteInlineTextLink(string label, string url)

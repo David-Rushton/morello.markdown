@@ -15,7 +15,7 @@ Tools for rendering markdown beautifully in your terminal.
 
 A console app that prints markdown in your console.
 
-![example screen shot](./images/markdown-cli-example.png)
+![example screen shot](./images/examples/markdown-cli-example.png)
 
 ### Install
 
