@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using Spectre.Console;
 
 namespace Morello.Markdown.Console.SyntaxHighlighters;
@@ -28,16 +29,8 @@ public class BatSyntaxHighlighter : ISyntaxHighlighter
             var info = new ProcessStartInfo
             {
                 FileName = "bat.exe",
-                ArgumentList =
-                {
-                    "--number",
-                    "--color", "always",
-                    "--terminal-width", System.Console.BufferWidth.ToString(),
-                    // The file name doesn't need to exist.
-                    // Bat uses the file extension to configure highlighting.
-                    // See also: bat --help
-                    "--file-name", $"lang.{language ?? "unknown"}"
-                },
+                // We cannot use ArgumentList here, because .NetStandard2.0 does not support it.
+                Arguments = GetBatArguments(language),
                 RedirectStandardOutput = true,
                 RedirectStandardInput = true,
                 CreateNoWindow = true
@@ -58,5 +51,20 @@ public class BatSyntaxHighlighter : ISyntaxHighlighter
             highlightedCode = null;
             return false;
         }
+    }
+
+    private string GetBatArguments(string? language)
+    {
+        var arguments = new StringBuilder();
+
+        arguments.Append("--number");
+        arguments.Append("--color always");
+        arguments.Append($"--terminal-width ${System.Console.BufferWidth}");
+        // Can be langague name or common file extension.
+        // See Bat --list-languages for support language codes.
+        // This can throw, which will result in falling back to the basic syntax highlighter.
+        arguments.Append($"--language {language ?? "unknown"}");
+
+        return arguments.ToString();
     }
 }

@@ -21,7 +21,7 @@ public class BasicSyntaxHighlighter : ISyntaxHighlighter
         out string? highlightedCode)
     {
         var lineNumber = 1;
-        var lines = code.Replace("\r\n", string.Empty).Split("\n");
+        var lines = code.Replace("\r\n", string.Empty).Split('\n');
 
         highlightedCode = string.Empty;
         foreach (var line in lines)
