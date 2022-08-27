@@ -20,11 +20,14 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       working-directory: ./src/markdown-cli/
-      run: dotnet restore
+      run: dotnet restore --configuration Release
+    - name: Build
+      working-directory: ./src/markdown-cli/
+      run: dotnet build --no-restore --configuration Release
     - name: Test
       working-directory: ./src/markdown-cli/
       run: dotnet test --no-build --verbosity normal --configuration Release
-    - name: Build
+    - name: Create Binaries
       working-directory: ./src/markdown-cli/
       run: |
         # Windows

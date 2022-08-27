@@ -20,16 +20,16 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       working-directory: ./src/markdown-console/
-      run: dotnet restore
+      run: dotnet restore --configuration Release
     - name: Build
       working-directory: ./src/markdown-console/
-      run: dotnet build --no-restore --configuration release
+      run: dotnet build --no-restore --configuration Release
     - name: Test
       working-directory: ./src/markdown-console/
-      run: dotnet test --no-build --verbosity normal --configuration release
+      run: dotnet test --no-build --verbosity normal --configuration Release
     - name: Package
       working-directory: ./src/markdown-console/
-      run: dotnet pack --include-symbols --configuration release
+      run: dotnet pack --include-symbols --configuration Release
     - name: Publish
       working-directory: ./src/markdown-console/
       env:
