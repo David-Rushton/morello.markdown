@@ -25,7 +25,7 @@ Powered by [MarkdownConsole](##`MarkdownConsole`).
 
 ## `MarkdownConsole`
 
-A .Net library that uses [Ansi Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code) tp pretty print markdown.
+A .Net library that uses [Ansi Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code) to pretty print markdown.
 
 ```shell
 dotnet add package Morello.MarkdownConsole --version 1.0.1
