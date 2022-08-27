@@ -1,5 +1,35 @@
 # Release Notes
 
+## `v1.4.0`
+
+We've added support for [`.NetStandard 2.0`](https://docs.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0)!
+We've always supported `.Net 6.0`.  Now you can use these additional `.Net` implementations & versions:
+
+- .Net 5.0
+- .Net Core 3.1
+- .Net Core 3.0
+- .Net Core 2.2
+- .Net Core 2.1
+- .Net Core 2.0
+- .Net Framework 4.8
+- .Net Framework 4.7.2
+- .Net Framework 4.7.1
+- .Net Framework 4.7
+- .Net Framework 4.6.2
+- .Net Framework 4.6.1
+- Mono 6.4
+- Mono 5.4
+- Xamarin.iOS 12.16
+- Xamarin.iOS 10.14
+- Xamarin.Mac 5.16
+- Xamarin.Mac 3.8
+- Xamarin.Android 10.0
+- Xamarin.Android 8.0
+- Universal Windows Platform 10.0.16299
+- Unity 2018.1
+
+We now include these release notes in our NuGet package.
+
 ## `v1.3.2`
 
 We've added our logo to NuGet.
