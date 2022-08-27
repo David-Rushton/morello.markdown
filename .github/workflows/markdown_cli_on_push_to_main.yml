@@ -53,4 +53,4 @@ jobs:
         git push origin $tag
 
         # Release
-        gh release create $tag ./Morello.MarkdownCli/bin/Release/net6.0/win-x64/publish/md-cli.exe ./Morello.MarkdownCli/bin/Release/net6.0/linus-x64/publish/md-cli --title $version --notes-file ../../docs/markdown-cli/release-notes-$version.md
+        gh release create $tag ./Morello.MarkdownCli/bin/Release/net6.0/win-x64/publish/md-cli.exe ./Morello.MarkdownCli/bin/Release/net6.0/linux-x64/publish/md-cli --title $version --notes-file ../../docs/markdown-cli/release-notes-$version.md
