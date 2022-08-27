@@ -1,5 +1,9 @@
 # Release Notes
 
+## `v1.3.2`
+
+We've added our logo to NuGet.
+
 ## `v1.3.1`
 
 Bug fix.  We failed to print the final character when falling back to plain text.
