@@ -104,10 +104,8 @@ public partial class AnsiRenderer
             throw new Exception(exceptionMessage);
         }
 
-        // Ranges in C# use an inclusive start and exclusive end.
-        // We want the final character.
-        var end = span.End + 1;
-        _console.Write(_markdown[span.Start..end]);
+        // Cannot use ranges here - not support supported by NetStandard2.0.
+        _console.Write(_markdown.Substring(span.Start, span.Length));
     }
 
     private void ThrowOrFallbackToPlainText(string exceptionMessage, string fallbackText)
