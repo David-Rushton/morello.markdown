@@ -25,11 +25,9 @@ This library uses these amazing projects to make markdown look its best in your 
 
 - [Spectre Console](https://github.com/spectreconsole/spectre.console)
 - [Markdig](https://github.com/xoofx/markdig)
+
+If you have the following installed it will add extra flourishes.  But don't worry if not.  We will
+still output beautfully rendered markdown.
+
 - [Bat](https://github.com/sharkdp/bat)
 - [Nerd Fonts](https://www.nerdfonts.com/)
-
-Bat and Nerd Fonts both need to be installed on your local system.  When they are not available this library
-will still work, but the output will not support the full range of features.
-
-> ⚠️ WARNING ⚠️  
-> Nerd Fonts fallback is a bit [messy at the moment](https://github.com/David-Rushton/morello.markdown/issues/1)
