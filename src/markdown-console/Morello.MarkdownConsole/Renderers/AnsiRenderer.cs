@@ -1,8 +1,8 @@
 using Markdig.Syntax;
-using Markdig.Syntax.Inlines;
 using Morello.Markdown.Console.Formatters;
 using Morello.Markdown.Console.Options;
 using Morello.Markdown.Console.Parsers;
+using Morello.Markdown.Console.Renderers.CharacterSets;
 using Morello.Markdown.Console.SyntaxHighlighters;
 using Spectre.Console;
 using MarkdownTable = Markdig.Extensions.Tables;
@@ -17,6 +17,7 @@ public partial class AnsiRenderer
     private readonly MarkdownParser _markdownParser;
     private readonly SyntaxHighlighter _syntaxHighlighter;
     private readonly NumberFormatter _numberFormatter;
+    private readonly CharacterSet _characterSet;
     private readonly IAnsiConsole _console;
 
     private string _markdown = string.Empty;
@@ -25,11 +26,13 @@ public partial class AnsiRenderer
         MarkdownParser markdownParser,
         SyntaxHighlighter syntaxHighlighter,
         NumberFormatter numberFormatter,
+        CharacterSet characterSet,
         IAnsiConsole console)
     {
         _markdownParser = markdownParser;
         _syntaxHighlighter = syntaxHighlighter;
         _numberFormatter = numberFormatter;
+        _characterSet = characterSet;
         _console = console;
     }
 

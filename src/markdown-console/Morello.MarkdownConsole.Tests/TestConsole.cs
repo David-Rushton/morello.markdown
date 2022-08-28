@@ -4,6 +4,7 @@ public class TestConsole
 {
     private readonly StringWriter _writer = new();
 
+    private UseNerdFonts _nerdFonts = UseNerdFonts.Yes;
     public string Output => _writer.ToString();
 
     public TestConsole()
@@ -30,8 +31,15 @@ public class TestConsole
         return this;
     }
 
+    public TestConsole SetNerdFonts(UseNerdFonts useNerdFonts)
+    {
+        _nerdFonts = useNerdFonts;
+        return this;
+    }
+
     public TestConsole Write(string markdown)
     {
+        MarkdownConsole.UseNerdFonts = _nerdFonts;
         MarkdownConsole.Write(markdown, _writer);
 
         return this;

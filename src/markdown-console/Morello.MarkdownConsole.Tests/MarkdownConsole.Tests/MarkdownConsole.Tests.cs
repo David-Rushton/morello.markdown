@@ -16,8 +16,10 @@ public abstract class MarkdownConsoleTests
     public const string AnsiBoldItalicEscape = "\u001b[1;3m";
     public const string AnsiStrikethroughEscape = "\u001b[9m";
     public const string AnsiBoldStrikethroughEscape = "\u001b[1;9m";
-    public const string AnsiCodeStartEscape = "\u001b[38;5;5m\u001b[0m\u001b[7;38;5;5m";
-    public const string AnsiCodeEndEscape = "\u001b[0m\u001b[38;5;5m";
+    public const string AnsiCodeStartEscapeNF = "\u001b[38;5;5m\u001b[0m\u001b[7;38;5;5m";
+    public const string AnsiCodeStartEscapeASCII = "\u001b[38;5;5m├\u001b[0m\u001b[7;38;5;5m";
+    public const string AnsiCodeEndEscapeNF = "\u001b[0m\u001b[38;5;5m";
+    public const string AnsiCodeEndEscapeASCII = "\u001b[0m\u001b[38;5;5m┤";
     public const string AnsiLinkEscape = "\u001b]8;";
     public const string AnsiPurpleEscape = "\u001b[38;5;5m";
     public const string AnsiPurpleItalicEscape = "\u001b[3;38;5;5m";

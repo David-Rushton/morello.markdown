@@ -1,3 +1,4 @@
+using System.Text;
 using Markdig.Extensions.TaskLists;
 using Markdig.Syntax.Inlines;
 using Spectre.Console;
@@ -8,7 +9,6 @@ public partial class AnsiRenderer
 {
 
     private bool _isQuote = false;
-    private string _quoteLinePrefix = "[purple] ❯ [/]";
 
     private void WriteInlines(IEnumerable<Inline> inlines, string? markupTag = null)
     {
@@ -25,7 +25,7 @@ public partial class AnsiRenderer
                     break;
 
                 case CodeInline code:
-                    _console.Markup($"[purple][invert]{ code.Content.EscapeMarkup() }[/][/]");
+                    WriteCodeInline(code);
                     break;
 
                 case LinkInline link:
@@ -39,6 +39,7 @@ public partial class AnsiRenderer
                 case LineBreakInline:
                     if (_isQuote)
                     {
+                        var _quoteLinePrefix = $"[purple] {_characterSet.QuotePrefix} [/]";
                         _console.Markup($"\n{_quoteLinePrefix}");
                         break;
                     }
@@ -46,7 +47,8 @@ public partial class AnsiRenderer
                     break;
 
                 case TaskList task:
-                    _console.Markup(task.Checked ? "[purple] [/]" : "[purple] [/]");
+                    var bullet = task.Checked ? _characterSet.TaskListBulletDone : _characterSet.TaskListBulletToDo;
+                    _console.Markup($"[purple]{bullet.EscapeMarkup()}[/]");
                     break;
 
                 default:
@@ -96,5 +98,20 @@ public partial class AnsiRenderer
                 ThrowOrFallbackToPlainText(exceptionMessage, fallbackText);
                 break;
         }
+    }
+
+    private void WriteCodeInline(CodeInline code)
+    {
+        var sb = new StringBuilder();
+
+        sb.Append("[purple]");
+        sb.Append(_characterSet.InlineCodeOpening);
+        sb.Append("[invert]");
+        sb.Append(code.Content.EscapeMarkup());
+        sb.Append("[/]");
+        sb.Append(_characterSet.InlineCodeClosing);
+        sb.Append("[/]");
+
+        _console.Markup(sb.ToString());
     }
 }
