@@ -42,7 +42,7 @@ This library uses these amazing projects to make markdown look its best in your 
  
 ### Optional
 
-If you Bat or Nerd Fonts installed `Morello Markdown` will add extra flourishes.  Don't worry if you
+If you have Bat or Nerd Fonts installed `Morello Markdown` will add extra flourishes.  Don't worry if you
 don't use these fantastic projects.  We will still render beautiful markdown in your terminal.
 
 - [Bat](https://github.com/sharkdp/bat)  
