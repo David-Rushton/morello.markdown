@@ -82,7 +82,7 @@ A .Net library that uses [Ansi Escape Codes](https://en.wikipedia.org/wiki/ANSI_
 ```
 
 We support [`.Net Standard 2.0`](https://docs.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0).
-This provides great coverage for recent versions of `.Net`, `.Net Core` and `.Net Framework`.  
+This provides great coverage for recent versions of `.Net`, `.Net Core` and `.Net Framework`.
 The full list is available [here](https://www.nuget.org/packages/Morello.MarkdownConsole#supportedframeworks-body-tab).
 
 ```csharp
