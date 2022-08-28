@@ -22,15 +22,15 @@ Tools for beautifully rendering markdown in your terminal.
 
 ## ![cherry icon](./images/cherry-16.png) Contents
 
-- `MarkdownCli`
-  - [Getting Started](###Getting-Started)
-  - [Build From Source](###Build-From-Source)
-  - [Download](###Download)
-- `MarkdownConsole`
-  - [Download Package](###Download-Package)
-- [Acknowledgments](##-Acknowledgments)
-  - [Optional Extras](###Optional-Extras)  
-- [Contact Us](###-Contact-Us)
+- [`MarkdownCli`](#-markdowncli)
+  - [Getting Started](#getting-started)
+  - [Build From Source](#build-from-source)
+  - [Download](#download)
+- [`MarkdownConsole`](#-markdownconsole)
+  - [Download Package](#download-package)
+- [Acknowledgments](#-acknowledgments)
+  - [Optional Extras](#optional-extras)  
+- [Contact Us](#-contact-us)
 
 ---
 
@@ -114,7 +114,7 @@ projects.  We will still render beautiful markdown in your terminal.
 
 ---
 
-## ![cherry icon](./images/cherry-16.png) Contract Us
+## ![cherry icon](./images/cherry-16.png) Contact Us
 
 Please share your feedback❗
 
