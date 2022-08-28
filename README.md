@@ -96,6 +96,7 @@ public class Program
   }
 }
 ```
+---
 
 ## ![cherry icon](./images/cherry-16.png) Acknowledgments
 
