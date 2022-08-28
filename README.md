@@ -121,7 +121,7 @@ projects.  We will still render beautiful markdown in your terminal.
 
 ## ![cherry icon](./images/cherry-16.png) Contact Us
 
-Please share your feedback❗
+Got something to say❓  I'd love to hear from you.
 
 - [Email](mailto:sayhello@morello.tools)
 - [Twitter](https://twitter.com/DavidRushton55)
