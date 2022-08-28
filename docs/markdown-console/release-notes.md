@@ -1,5 +1,72 @@
 # Release Notes
 
+## `v1.6.0`
+
+We've improved our [Nerd Fonts](https://www.nerdfonts.com/) support.
+
+Previously Nerd Fonts where enabled by default.  Which Nerd Fonts are awesome, no al fonts support the
+full range of glyphs.  This led to ugly fallbacks.
+
+## Examples
+
+Let's look at three examples, which all use this markdown:
+
+```md
+## With Nerd Fonts
+
+To enable Nerd Fonts: `MarkdownConsole.UseNerdFonts(UseNerdFonts.Yes)`.
+
+> *Nerd Fonts* patches developer targeted fonts with a high number of glyphs (icons).
+
+Number List: 
+1. Item 1
+1. Item 2
+1. Item 3
+
+To Do List: 
+- [ ] Item 1
+- [x] Item 2
+- [ ] Item 3
+
+Bullet List:
+- Bullet 1
+- Bullet 2
+- Bullet 3
+```
+
+### Nerd Fonts Enabled But Not Supported
+
+As you can see we don't fallback gracefully.  
+
+Our numbered lists, bullet lists and to do lists all look the same.  The numbered list has lost it numbers - arguably the most important bit!
+
+Inline code is pre and postfixed with your font's default fallback glyph.
+
+![Nerd Fonts enabled and not supported](../../images/examples/nerd-fonts-enabled-not-supported.png)
+
+### Nerd Fonts Disabled
+
+Our new default.  We stick to characters from the standard and extended ASCII table.  This should be supported by virtually all fonts.
+
+Lists and inline code have been restored.
+
+We have also picked a different quote glyph.  This one has wider support.  
+
+![Nerd Fonts disabled](../../images/examples/nerd-fonts-disabled.png)
+
+### With Nerd Fonts Enabled and Supported
+
+You can still opt-in to Nerd Fonts.
+
+To do lists and inline code blocks make great use of the extended glyph set.
+
+![Nerd Fonts endabled and supported](../../images/examples/nerd-fonts-enabled-and-supported.png)
+
+To enable Nerd Fonts:
+
+1. [Install](https://www.nerdfonts.com/font-downloads) a supported font
+1. Enable: `MarkdownConsole.UseNerdFonts(UseNerdFonts.Yes);`
+
 ## `v1.5.0`
 
 We have added support for [auto links](https://spec.commonmark.org/0.30/#autolinks).

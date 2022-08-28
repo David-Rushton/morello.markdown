@@ -2,6 +2,7 @@ using Morello.Markdown.Console.Converters;
 using Morello.Markdown.Console.Formatters;
 using Morello.Markdown.Console.Options;
 using Morello.Markdown.Console.Parsers;
+using Morello.Markdown.Console.Renderers.CharacterSets;
 using Morello.Markdown.Console.SyntaxHighlighters;
 using Spectre.Console;
 
@@ -18,6 +19,7 @@ public class AnsiRendererBuilder
 
     private AnsiSupport _ansiSupport = AnsiSupport.Detect;
     private ColorSystemSupport _colorSystem = ColorSystemSupport.Detect;
+    private CharacterSet _characterSet = new AsciiCharacterSet();
     private TextWriter? _writer;
 
     /// <summary>
@@ -26,7 +28,6 @@ public class AnsiRendererBuilder
     /// Useful for testing and debugging.
     /// </summary>
     /// <param name="writer">Ansi formatted string will be built using the supplied writer</param>
-    /// <returns></returns>
     public AnsiRendererBuilder RedirectOutput(TextWriter writer)
     {
         _writer = writer;
@@ -36,6 +37,7 @@ public class AnsiRendererBuilder
     /// <summary>
     /// Clone capabilities from an existing console.
     /// </summary>
+    /// <param name="console">Copy configuration from this console.</param>
     public AnsiRendererBuilder InheritSettings(IAnsiConsole console)
     {
         _colorSystem = ColorSystemSupportConverter.FromColorSystem(console.Profile.Capabilities.ColorSystem);
@@ -44,13 +46,22 @@ public class AnsiRendererBuilder
         return this;
     }
 
+    public  AnsiRendererBuilder SetNerdFontsUsage(UseNerdFonts useNerdFonts)
+    {
+        _characterSet = useNerdFonts == UseNerdFonts.Yes
+            ? new NerdFontCharacterSet()
+            : new AsciiCharacterSet();
+        return this;
+    }
+
+
     /// <summary>
     /// Builds and returns an AnsiRenderer.
     /// </summary>
     public AnsiRenderer Build()
     {
         var console = GetConsole();
-        return new AnsiRenderer(Parser, SyntaxHighlighter, NumberFormatter, console);
+        return new AnsiRenderer(Parser, SyntaxHighlighter, NumberFormatter, _characterSet, console);
     }
 
     private IAnsiConsole GetConsole()

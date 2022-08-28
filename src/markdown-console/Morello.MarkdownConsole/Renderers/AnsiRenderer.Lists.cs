@@ -7,19 +7,18 @@ namespace Morello.Markdown.Console.Renderers;
 
 public partial class AnsiRenderer
 {
-    private const string DefaultBullet = "  [purple] [/] ";
-
     private void WriteListBlock(ListBlock block)
     {
         var numberedListCounter = 1;
 
         foreach (var item in block)
         {
+            var listBullet = $" [purple]{_characterSet.ListBullet}[/] ";
             var bullet = (block.BulletType) switch
             {
-                '-' =>  IsTaskList(item) ? "  " : DefaultBullet,
-                '1' => $"  [purple]{_numberFormatter.Format(numberedListCounter++)} [/]",
-                _ => DefaultBullet
+                '-' =>  IsTaskList(item) ? " " : listBullet,
+                '1' => $" [purple]{_numberFormatter.Format(numberedListCounter++, _characterSet)} [/]",
+                _ => listBullet
             };
 
             _console.Markup(bullet);
