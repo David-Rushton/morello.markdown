@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
 
     <PackageId>Morello.MarkdownConsole</PackageId>
-    <Version>1.6.0</Version>
+    <Version>1.6.1</Version>
     <PackageIcon>cherry-64.png</PackageIcon>
     <Company>Morello</Company>
     <Authors>David Rushton</Authors>
@@ -18,7 +18,7 @@
     <PackageTags>Markdown Console Terminal Shell</PackageTags>
     <IsPackable>true</IsPackable>
     <Copyright>David Rushton 2022</Copyright>
-    <RepositoryUrl>https://github.com/David-Rushton/Morello.Markdown.Console</RepositoryUrl>
+    <RepositoryUrl>https://github.com/David-Rushton/Morello.Markdown</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <IncludeSymbols>true</IncludeSymbols>
