@@ -42,18 +42,13 @@ This library uses these amazing projects to make markdown look its best in your 
  
 ### Optional
 
-When available, on the local system, Morello Markdown will look its best.
- 
+If you Bat or Nerd Fonts installed `Morello Markdown` will add extra flourishes.  Don't worry if you
+don't use these fantastic projects.  We will still render beautiful markdown in your terminal.
+
 - [Bat](https://github.com/sharkdp/bat)  
-  If installed we use Bat to provide syntax highlighting.  
-  If not we fallback to a basic highlighter.
+  When installed Bat provides colourful syntax highlighting.  
+  When not we fallback to a basic highlighter.
 
 - [Nerd Fonts](https://www.nerdfonts.com/)  
-  We use Nerd Fonts to print non-alphanumeric characters.   
-
-> ⚠️ WARNING ⚠️  
-> Nerd Fonts fallback is a bit [messy at the moment](https://github.com/David-Rushton/morello.markdown/issues/1)
-
-### Other
-
-<a href="https://www.flaticon.com/free-icons/cherry" title="cherry icons">Cherry icons created by Freepik - Flaticon</a>
+  When installed Nerd Fonts add extra decorations to the text.
+  When not we use a mix of colours and styles.
