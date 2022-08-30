@@ -64,8 +64,7 @@ $ /path/to/markdown.md | md-cli
 
 Or you can [download](https://github.com/David-Rushton/morello.markdown/releases) prebuilt binaries.  We support Windows and Linux.
 
-> You don't need to download anything else.  
-> There are no dependencies.
+> You do not need to download anything else
 
 ---
 
