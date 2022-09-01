@@ -7,6 +7,8 @@
 [![CLI PR Build and Test](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_cli_on_pull_request_to_main.yml/badge.svg)](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_cli_on_pull_request_to_main.yml)
 [![CLI Publish to Releases](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_cli_on_push_to_main.yml/badge.svg)](https://github.com/David-Rushton/morello.markdown/actions/workflows/markdown_cli_on_push_to_main.yml)  
 
+[![CodeQL](https://github.com/David-Rushton/morello.markdown/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/David-Rushton/morello.markdown/actions/workflows/codeql-analysis.yml)
+
 ![License](https://img.shields.io/github/license/david-rushton/morello.markdown)
 
 ---
