@@ -15,10 +15,13 @@ public partial class AnsiRenderer
 
             if (block.Level == 1)
             {
-                _console
-                    .Write(new FigletText(escapedHeader)
-                    .Alignment(Justify.Left)
-                    .Color(Color.Purple));
+                FigletText figletText = new(escapedHeader)
+                {
+                    Justification = Justify.Left,
+                    Color = Color.Purple,
+                };
+
+                _console.Write(figletText);
                 return;
             }
 

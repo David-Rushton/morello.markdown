@@ -20,7 +20,7 @@
   <ItemGroup>
     <PackageReference Include="Morello.MarkdownConsole" Version="1.7.0" />
     <PackageReference Include="Spectre.Console" Version="0.51.1" />
-    <PackageReference Include="Spectre.Console.Analyzer" Version="0.51.1" />
+    <PackageReference Include="Spectre.Console.Analyzer" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
