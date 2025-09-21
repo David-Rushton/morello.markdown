@@ -18,9 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Morello.MarkdownConsole" Version="1.6.0" />
-    <PackageReference Include="Spectre.Console" Version="0.44.0" />
-    <PackageReference Include="Spectre.Console.Analyzer" Version="0.44.0" />
+    <PackageReference Include="Morello.MarkdownConsole" Version="1.7.0" />
+    <PackageReference Include="Spectre.Console" Version="0.51.1" />
+    <PackageReference Include="Spectre.Console.Analyzer" Version="0.51.1" />
   </ItemGroup>
 
 </Project>
